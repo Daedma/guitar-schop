@@ -5,8 +5,8 @@ import java.util.List;
 import org.bson.types.ObjectId;
 
 public class Category {
-	String name;
-	List<ObjectId> goods;
+	private String name;
+	private List<ObjectId> goods;
 
 	public String getName() {
 		return name;

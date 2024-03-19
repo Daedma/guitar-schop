@@ -5,10 +5,10 @@ import java.util.List;
 import org.bson.types.*;
 
 public class User {
-	String login;
-	String password;
-	String role;
-	List<ObjectId> cart;
+	private String login;
+	private String password;
+	private String role;
+	private List<ObjectId> cart;
 
 	public String getLogin() {
 		return login;

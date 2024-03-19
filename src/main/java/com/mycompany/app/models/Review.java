@@ -6,12 +6,12 @@ import java.util.List;
 import org.bson.types.ObjectId;
 
 public class Review {
-	ObjectId autor;
-	ObjectId goods;
-	Date publichingDate;
-	String content;
-	Float rate;
-	List<String> photos;
+	private ObjectId autor;
+	private ObjectId goods;
+	private Date publichingDate;
+	private String content;
+	private Float rate;
+	private List<String> photos;
 
 	public ObjectId getAutor() {
 		return autor;
