@@ -2,9 +2,12 @@ package com.mycompany.app.models;
 
 import java.util.List;
 
+import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.types.*;
 
 public class User {
+	@BsonId
+	private ObjectId id;
 	private String login;
 	private String password;
 	private String role;
@@ -46,5 +49,13 @@ public class User {
 	public String toString() {
 		return "User [\n  login=" + login + ",\n  password=" + password + ",\n  role=" + role + ",\n  cart=" + cart
 				+ "\n]";
+	}
+
+	public ObjectId getId() {
+		return id;
+	}
+
+	public void setId(ObjectId id) {
+		this.id = id;
 	}
 }
