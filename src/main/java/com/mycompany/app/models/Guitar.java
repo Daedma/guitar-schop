@@ -1,39 +1,40 @@
 package com.mycompany.app.models;
 
-import com.mycompany.app.models.Good;
+import org.bson.codecs.pojo.annotations.BsonDiscriminator;
 
+@BsonDiscriminator(value = "guitar", key = "type")
 public class Guitar extends Good {
-    private String guitarForm;  // форм-фактор
-    private String guitarFrets; // количество ладов
+	private String guitarForm; // форм-фактор
+	private String guitarFrets; // количество ладов
 
-    private String getGuitarForm() {
-        return guitarForm;
-    }
+	public String getGuitarForm() {
+		return guitarForm;
+	}
 
-    private void setGuitarForm(String guitarForm) {
-        this.guitarForm = guitarForm;
-    }
+	public void setGuitarForm(String guitarForm) {
+		this.guitarForm = guitarForm;
+	}
 
-    private String getGuitarFrets() {
-        return guitarFrets;
-    }
+	public String getGuitarFrets() {
+		return guitarFrets;
+	}
 
-    private void setGuitarFrets(String guitarFrets) {
-        this.guitarFrets = guitarFrets;
-    }
+	public void setGuitarFrets(String guitarFrets) {
+		this.guitarFrets = guitarFrets;
+	}
 
-    @Override
-    public String toString() {
-        return "Guitar{" +
-                "guitarForm='" + guitarForm + '\'' +
-                ", guitarFrets='" + guitarFrets + '\'' +
-                ", name='" + getName() + '\'' +
-                ", description='" + getDescription() + '\'' +
-                ", cost=" + getCost() +
-                ", images=" + getImages() +
-                ", remaining=" + getRemaining() +
-                ", rate=" + getRate() +
-                ", categories=" + getCategories() +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "Guitar{" +
+				"guitarForm='" + guitarForm + '\'' +
+				", guitarFrets='" + guitarFrets + '\'' +
+				", name='" + getName() + '\'' +
+				", description='" + getDescription() + '\'' +
+				", cost=" + getCost() +
+				", images=" + getImages() +
+				", remaining=" + getRemaining() +
+				", rate=" + getRate() +
+				", categories=" + getCategories() +
+				'}';
+	}
 }

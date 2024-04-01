@@ -1,50 +1,63 @@
 package com.mycompany.app.models;
 
+import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.types.ObjectId;
+
 public class Address {
-    private Integer index;
-    private String city;
-    private String building;
-    private Integer flat;
+	@BsonId
+	private ObjectId id;
+	private Integer index;
+	private String city;
+	private String building;
+	private Integer flat;
 
-    public Integer getIndex() {
-        return index;
-    }
+	public ObjectId getId() {
+		return id;
+	}
 
-    public void setIndex(Integer index) {
-        this.index = index;
-    }
+	public void setId(ObjectId id) {
+		this.id = id;
+	}
 
-    public String getCity() {
-        return city;
-    }
+	public Integer getIndex() {
+		return index;
+	}
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+	public void setIndex(Integer index) {
+		this.index = index;
+	}
 
-    public String getBuilding() {
-        return building;
-    }
+	public String getCity() {
+		return city;
+	}
 
-    public void setBuilding(String building) {
-        this.building = building;
-    }
+	public void setCity(String city) {
+		this.city = city;
+	}
 
-    public Integer getFlat() {
-        return flat;
-    }
+	public String getBuilding() {
+		return building;
+	}
 
-    public void setFlat(Integer flat) {
-        this.flat = flat;
-    }
+	public void setBuilding(String building) {
+		this.building = building;
+	}
 
-    @Override
-    public String toString() {
-        return "Address{" +
-                "index=" + index +
-                ", city='" + city + '\'' +
-                ", building='" + building + '\'' +
-                ", flat=" + flat +
-                '}';
-    }
+	public Integer getFlat() {
+		return flat;
+	}
+
+	public void setFlat(Integer flat) {
+		this.flat = flat;
+	}
+
+	@Override
+	public String toString() {
+		return "Address{" +
+				"index=" + index +
+				", city='" + city + '\'' +
+				", building='" + building + '\'' +
+				", flat=" + flat +
+				'}';
+	}
 }
