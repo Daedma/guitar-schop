@@ -2,11 +2,22 @@ package com.mycompany.app.models;
 
 import java.util.List;
 
+import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.types.ObjectId;
 
 public class Category {
+	@BsonId
+	private ObjectId id;
 	private String name;
 	private List<ObjectId> goods;
+
+	public ObjectId getId() {
+		return id;
+	}
+
+	public void setId(ObjectId id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;

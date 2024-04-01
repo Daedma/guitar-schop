@@ -3,9 +3,12 @@ package com.mycompany.app.models;
 import java.util.Date;
 import java.util.List;
 
+import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.types.ObjectId;
 
 public class Review {
+	@BsonId
+	private ObjectId id;
 	private ObjectId autor;
 	private ObjectId goods;
 	private Date publichingDate;
@@ -65,5 +68,13 @@ public class Review {
 	public String toString() {
 		return "Review [\n  autor=" + autor + ",\n  goods=" + goods + ",\n  publishingDate=" + publichingDate
 				+ ",\n  content=" + content + ",\n rate=" + rate + "\n, photos=" + photos + "\n]";
+	}
+
+	public ObjectId getId() {
+		return id;
+	}
+
+	public void setId(ObjectId id) {
+		this.id = id;
 	}
 }
