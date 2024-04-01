@@ -4,6 +4,7 @@ import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Updates;
 import com.mycompany.app.dao.CategoryDAO;
 import com.mycompany.app.models.Category;
 
@@ -14,13 +15,13 @@ public class CategoryMongoDAO extends BaseMongoDAO<Category> implements Category
 
 	@Override
 	protected ObjectId getId(Category entity) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getId'");
+		return entity.getId();
 	}
 
 	@Override
 	protected Bson createUpdateOperation(Category entity) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'createUpdateOperation'");
+		return Updates.combine(
+				Updates.set("goods", entity.getGoods()),
+				Updates.set("name", entity.getName()));
 	}
 }

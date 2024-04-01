@@ -4,6 +4,7 @@ import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Updates;
 import com.mycompany.app.dao.OrderDAO;
 import com.mycompany.app.models.Order;
 
@@ -14,13 +15,17 @@ public class OrderMongoDAO extends BaseMongoDAO<Order> implements OrderDAO {
 
 	@Override
 	protected ObjectId getId(Order entity) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getId'");
+		return entity.getId();
 	}
 
 	@Override
 	protected Bson createUpdateOperation(Order entity) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'createUpdateOperation'");
+		return Updates.combine(
+				Updates.set("address", entity.getAddress()),
+				Updates.set("cost", entity.getCost()),
+				Updates.set("date", entity.getDate()),
+				Updates.set("fullName", entity.getFullName()),
+				Updates.set("goods", entity.getGoods()),
+				Updates.set("status", entity.getStatus()));
 	}
 }

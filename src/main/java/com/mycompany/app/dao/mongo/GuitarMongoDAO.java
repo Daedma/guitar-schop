@@ -4,6 +4,7 @@ import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Updates;
 import com.mycompany.app.dao.GuitarDAO;
 import com.mycompany.app.models.Guitar;
 
@@ -15,12 +16,21 @@ public class GuitarMongoDAO extends BaseMongoDAO<Guitar> implements GuitarDAO {
 
 	@Override
 	protected ObjectId getId(Guitar entity) {
-		throw new UnsupportedOperationException("Unimplemented method 'getId'");
+		return entity.getId();
 	}
 
 	@Override
 	protected Bson createUpdateOperation(Guitar entity) {
-		throw new UnsupportedOperationException("Unimplemented method 'createUpdateOperation'");
+		return Updates.combine(
+				Updates.set("categories", entity.getCategories()),
+				Updates.set("cost", entity.getCost()),
+				Updates.set("description", entity.getDescription()),
+				Updates.set("guitarForm", entity.getGuitarForm()),
+				Updates.set("guitarFrets", entity.getGuitarFrets()),
+				Updates.set("images", entity.getImages()),
+				Updates.set("name", entity.getName()),
+				Updates.set("rate", entity.getRate()),
+				Updates.set("ramaining", entity.getRemaining()));
 	}
 
 }
