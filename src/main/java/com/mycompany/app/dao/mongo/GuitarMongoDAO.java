@@ -1,11 +1,13 @@
 package com.mycompany.app.dao.mongo;
 
+import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Updates;
 import com.mycompany.app.dao.GuitarDAO;
+import com.mycompany.app.filters.GuitarFilter;
 import com.mycompany.app.models.Guitar;
 
 public class GuitarMongoDAO extends BaseMongoDAO<Guitar> implements GuitarDAO {
@@ -33,4 +35,9 @@ public class GuitarMongoDAO extends BaseMongoDAO<Guitar> implements GuitarDAO {
 				Updates.set("ramaining", entity.getRemaining()));
 	}
 
+	@Override
+	public Iterable<Guitar> findByFilter(GuitarFilter filter) {
+		Document query = new Document();
+		return collection.find(filter.createMongoQuery(query));
+	}
 }

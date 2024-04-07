@@ -1,11 +1,13 @@
 package com.mycompany.app.dao.mongo;
 
+import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Updates;
 import com.mycompany.app.dao.StringsDAO;
+import com.mycompany.app.filters.StringsFilter;
 import com.mycompany.app.models.Strings;
 
 public class StringsMongoDAO extends BaseMongoDAO<Strings> implements StringsDAO {
@@ -31,6 +33,12 @@ public class StringsMongoDAO extends BaseMongoDAO<Strings> implements StringsDAO
 				Updates.set("remaining", entity.getRemaining()),
 				Updates.set("stringGauge", entity.getStringGauge()),
 				Updates.set("stringMaterial", entity.getStringMaterial()));
+	}
+
+	@Override
+	public Iterable<Strings> findByFilter(StringsFilter filter) {
+		Document query = new Document();
+		return collection.find(filter.createMongoQuery(query));
 	}
 
 }

@@ -1,11 +1,13 @@
 package com.mycompany.app.dao.mongo;
 
+import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Updates;
 import com.mycompany.app.dao.GoodDAO;
+import com.mycompany.app.filters.GoodFilter;
 import com.mycompany.app.models.Good;
 
 public class GoodMongoDAO extends BaseMongoDAO<Good> implements GoodDAO {
@@ -29,4 +31,11 @@ public class GoodMongoDAO extends BaseMongoDAO<Good> implements GoodDAO {
 				Updates.set("rate", entity.getRate()),
 				Updates.set("ramaining", entity.getRemaining()));
 	}
+
+	@Override
+	public Iterable<Good> findByFilter(GoodFilter filter) {
+		Document query = new Document();
+		return collection.find(filter.createMongoQuery(query));
+	}
+
 }

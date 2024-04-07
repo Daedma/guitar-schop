@@ -2,9 +2,12 @@ package com.mycompany.app.filters;
 
 import java.util.List;
 
+import org.bson.Document;
+import org.bson.conversions.Bson;
+
 public class GoodFilter {
 	private String sortBy;
-	private Boolean sortAsc;
+	private Integer sortOrder = 1;
 	private Float minCost;
 	private Float maxCost;
 	private String searchQuery;
@@ -13,9 +16,46 @@ public class GoodFilter {
 	private String type;
 	private List<String> categories;
 
+	public Bson createMongoQuery(Document query) {
+		if (getSortBy() != null && getSortOrder() != null) {
+			query.put("$sort", new Document(getSortBy(), getSortOrder()));
+		}
+
+		if (getMinCost() != null) {
+			query.put("cost", new Document("$gte", getMinCost()));
+		}
+
+		if (getMaxCost() != null) {
+			query.put("cost", new Document("$lte", getMinCost()));
+		}
+		// db.stores.createIndex( { name: "text", description: "text" } )
+		if (getSearchQuery() != null) {
+			query.put("$text", new Document("$search", getSearchQuery()));
+		}
+
+		if (getMinimalRate() != null) {
+			query.put("rate", new Document("$gte", getMinimalRate()));
+		}
+
+		if (getType() != null) {
+			query.put("type", getType());
+		}
+
+		if (getInStock() != null) {
+			query.put("remaining", new Document("gte", 0));
+		}
+
+		if (getCategories() != null) {
+			query.put("categories", new Document("$in", getCategories()));
+		}
+
+		return query;
+	}
+
 	@Override
 	public String toString() {
-		return "GoodFilter [sortBy=" + sortBy + ", sortAsc=" + sortAsc + ", minCost=" + minCost + ", maxCost=" + maxCost
+		return "GoodFilter [sortBy=" + sortBy + ", sortAsc=" + sortOrder + ", minCost=" + minCost + ", maxCost="
+				+ maxCost
 				+ ", searchQuery=" + searchQuery + ", minimalRate=" + minimalRate + ", inStock=" + inStock + ", type="
 				+ type + ", categories=" + categories + "]";
 	}
@@ -28,12 +68,12 @@ public class GoodFilter {
 		this.sortBy = sortBy;
 	}
 
-	public Boolean getSortAsc() {
-		return sortAsc;
+	public Integer getSortOrder() {
+		return sortOrder;
 	}
 
-	public void setSortAsc(Boolean sortAsc) {
-		this.sortAsc = sortAsc;
+	public void setSortOrder(Integer sortAsc) {
+		this.sortOrder = sortAsc;
 	}
 
 	public Float getMinCost() {
