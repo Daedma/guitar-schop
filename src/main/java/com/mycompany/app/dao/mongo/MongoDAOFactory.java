@@ -4,8 +4,10 @@ import com.mongodb.client.MongoDatabase;
 import com.mycompany.app.dao.CategoryDAO;
 import com.mycompany.app.dao.DAOFactory;
 import com.mycompany.app.dao.GoodDAO;
+import com.mycompany.app.dao.GuitarDAO;
 import com.mycompany.app.dao.OrderDAO;
 import com.mycompany.app.dao.ReviewDAO;
+import com.mycompany.app.dao.StringsDAO;
 import com.mycompany.app.dao.UserDAO;
 
 public class MongoDAOFactory implements DAOFactory {
@@ -38,5 +40,15 @@ public class MongoDAOFactory implements DAOFactory {
 	@Override
 	public ReviewDAO createReviewDAO() {
 		return new ReviewMongoDAO(database);
+	}
+
+	@Override
+	public GuitarDAO createGuitarDAO() {
+		return new GuitarMongoDAO(database);
+	}
+
+	@Override
+	public StringsDAO createStringsDAO() {
+		return new StringsMongoDAO(database);
 	}
 }

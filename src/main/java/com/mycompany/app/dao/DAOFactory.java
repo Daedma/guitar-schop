@@ -10,4 +10,8 @@ public interface DAOFactory {
 	GoodDAO createGoodDAO();
 
 	ReviewDAO createReviewDAO();
+
+	StringsDAO createStringsDAO();
+
+	GuitarDAO createGuitarDAO();
 }

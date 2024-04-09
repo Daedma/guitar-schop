@@ -16,7 +16,7 @@ import com.mycompany.app.models.Strings;
 
 public class StringsMongoDAO extends BaseMongoDAO<Strings> implements StringsDAO {
 
-	public StringsMongoDAO(MongoDatabase database, String collectionName, Class<Strings> entityClass) {
+	public StringsMongoDAO(MongoDatabase database) {
 		super(database, "Goods", Strings.class);
 	}
 
