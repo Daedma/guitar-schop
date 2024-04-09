@@ -4,6 +4,7 @@ import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import com.mycompany.app.dao.ReviewDAO;
 import com.mycompany.app.models.Review;
@@ -11,6 +12,11 @@ import com.mycompany.app.models.Review;
 public class ReviewMongoDAO extends BaseMongoDAO<Review> implements ReviewDAO {
 	public ReviewMongoDAO(MongoDatabase database) {
 		super(database, "Reviews", Review.class);
+	}
+
+	@Override
+	public Iterable<Review> getAllReviewsOfGood(String goodId) {
+		return collection.find(Filters.eq("goods", new ObjectId(goodId)));
 	}
 
 	@Override
