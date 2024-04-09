@@ -17,15 +17,19 @@ public class MongoDBConnection {
 	private MongoDatabase database;
 
 	public MongoDBConnection() {
+		this(CONNECTION_STRING, DATABASE_NAME);
+	}
+
+	public MongoDBConnection(String connectionString, String databaseName) {
 		CodecProvider pojoCodecProvider = PojoCodecProvider.builder().register("com.mycompany.app.models")
 				.automatic(true).build();
 		CodecRegistry codecRegistry = CodecRegistries.fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
 				CodecRegistries.fromProviders(pojoCodecProvider));
 		MongoClientSettings clientSettings = MongoClientSettings.builder()
-				.applyConnectionString(new ConnectionString(CONNECTION_STRING))
+				.applyConnectionString(new ConnectionString(connectionString))
 				.build();
 
-		database = MongoClients.create(clientSettings).getDatabase(DATABASE_NAME).withCodecRegistry(codecRegistry);
+		database = MongoClients.create(clientSettings).getDatabase(databaseName).withCodecRegistry(codecRegistry);
 	}
 
 	public MongoDatabase getDatabase() {
