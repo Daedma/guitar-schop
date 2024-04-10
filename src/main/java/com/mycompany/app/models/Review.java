@@ -4,37 +4,24 @@ import java.util.Date;
 import java.util.List;
 
 import org.bson.codecs.pojo.annotations.BsonId;
-import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.types.ObjectId;
 
 public class Review {
 	@BsonId
 	private ObjectId id;
-	@BsonProperty("author_id")
-	private ObjectId author;
-	@BsonProperty("goods_id")
+	private ObjectId autor;
 	private ObjectId goods;
-	@BsonProperty("publishing_date")
-	private Date publishingDate;
-	@BsonProperty("content")
+	private Date publichingDate;
 	private String content;
-	@BsonProperty("rate")
 	private Float rate;
+	private List<String> photos;
 
-	public ObjectId getId() {
-		return id;
+	public ObjectId getAutor() {
+		return autor;
 	}
 
-	public void setId(ObjectId id) {
-		this.id = id;
-	}
-
-	public ObjectId getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(ObjectId author) {
-		this.author = author;
+	public void setAutor(ObjectId autor) {
+		this.autor = autor;
 	}
 
 	public ObjectId getGoods() {
@@ -45,12 +32,12 @@ public class Review {
 		this.goods = goods;
 	}
 
-	public Date getPublishingDate() {
-		return publishingDate;
+	public Date getPublichingDate() {
+		return publichingDate;
 	}
 
-	public void setPublishingDate(Date publishingDate) {
-		this.publishingDate = publishingDate;
+	public void setPublichingDate(Date publichingDate) {
+		this.publichingDate = publichingDate;
 	}
 
 	public String getContent() {
@@ -69,15 +56,25 @@ public class Review {
 		this.rate = rate;
 	}
 
+	public List<String> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(List<String> photos) {
+		this.photos = photos;
+	}
+
 	@Override
 	public String toString() {
-		return "Review{" +
-				"id=" + id +
-				", author=" + author +
-				", goods=" + goods +
-				", publishingDate=" + publishingDate +
-				", content='" + content + '\'' +
-				", rate=" + rate +
-				'}';
+		return "Review [\n  autor=" + autor + ",\n  goods=" + goods + ",\n  publishingDate=" + publichingDate
+				+ ",\n  content=" + content + ",\n rate=" + rate + "\n, photos=" + photos + "\n]";
+	}
+
+	public ObjectId getId() {
+		return id;
+	}
+
+	public void setId(ObjectId id) {
+		this.id = id;
 	}
 }

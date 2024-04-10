@@ -1,67 +1,63 @@
 package com.mycompany.app.models;
 
-import org.bson.codecs.pojo.annotations.BsonProperty;
+import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.types.ObjectId;
 
 public class Address {
-    @BsonProperty("index")
-    private Integer index;
-    @BsonProperty("city")
-    private String city;
-    @BsonProperty("street")
-    private String street;
-    @BsonProperty("building")
-    private String building;
-    @BsonProperty("flat")
-    private String flat;
+	@BsonId
+	private ObjectId id;
+	private Integer index;
+	private String city;
+	private String building;
+	private Integer flat;
 
-    public Integer getIndex() {
-        return index;
-    }
+	public ObjectId getId() {
+		return id;
+	}
 
-    public void setIndex(Integer index) {
-        this.index = index;
-    }
+	public void setId(ObjectId id) {
+		this.id = id;
+	}
 
-    public String getCity() {
-        return city;
-    }
+	public Integer getIndex() {
+		return index;
+	}
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+	public void setIndex(Integer index) {
+		this.index = index;
+	}
 
-    public String getStreet() {
-        return street;
-    }
+	public String getCity() {
+		return city;
+	}
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
+	public void setCity(String city) {
+		this.city = city;
+	}
 
-    public String getBuilding() {
-        return building;
-    }
+	public String getBuilding() {
+		return building;
+	}
 
-    public void setBuilding(String building) {
-        this.building = building;
-    }
+	public void setBuilding(String building) {
+		this.building = building;
+	}
 
-    public String getFlat() {
-        return flat;
-    }
+	public Integer getFlat() {
+		return flat;
+	}
 
-    public void setFlat(String flat) {
-        this.flat = flat;
-    }
+	public void setFlat(Integer flat) {
+		this.flat = flat;
+	}
 
-    @Override
-    public String toString() {
-        return "Address{" +
-                "index=" + index +
-                ", city='" + city + '\'' +
-                ", street='" + street + '\'' +
-                ", building='" + building + '\'' +
-                ", flat='" + flat + '\'' +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "Address{" +
+				"index=" + index +
+				", city='" + city + '\'' +
+				", building='" + building + '\'' +
+				", flat=" + flat +
+				'}';
+	}
 }

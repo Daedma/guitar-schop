@@ -1,105 +1,87 @@
 package com.mycompany.app.models;
 
 import org.bson.codecs.pojo.annotations.BsonId;
-import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.types.ObjectId;
 
 import java.util.Date;
 import java.util.List;
 
 public class Order {
-    @BsonId
-    private ObjectId id;
-    @BsonProperty("user_id")
-    private ObjectId user_id;
-    @BsonProperty("full_name")
-    private String fullName;
-    @BsonProperty("goods_id")
-    private List<ObjectId> goods;
-    @BsonProperty("cost")
-    private Float cost;
-    @BsonProperty("address")
-    private Address address;
-    @BsonProperty("date")
-    private Date date;
-    @BsonProperty("status")
-    private String status; // accepted, completed, declined
+	@BsonId
+	private ObjectId id;
+	private String fullName;
+	private List<ObjectId> goods;
+	private Float cost;
+	private Address address;
+	private Date date;
+	private String status;
 
-    public ObjectId getId() {
-        return id;
-    }
+	public ObjectId getId() {
+		return id;
+	}
 
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
+	public void setId(ObjectId id) {
+		this.id = id;
+	}
 
-    public ObjectId getUser_id() {
-        return user_id;
-    }
+	public String getFullName() {
+		return fullName;
+	}
 
-    public void setUser_id(ObjectId user_id) {
-        this.user_id = user_id;
-    }
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
 
-    public String getFullName() {
-        return fullName;
-    }
+	public List<ObjectId> getGoods() {
+		return goods;
+	}
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
+	public void setGoods(List<ObjectId> goods) {
+		this.goods = goods;
+	}
 
-    public List<ObjectId> getGoods() {
-        return goods;
-    }
+	public Float getCost() {
+		return cost;
+	}
 
-    public void setGoods(List<ObjectId> goods) {
-        this.goods = goods;
-    }
+	public void setCost(Float cost) {
+		this.cost = cost;
+	}
 
-    public Float getCost() {
-        return cost;
-    }
+	public Address getAddress() {
+		return address;
+	}
 
-    public void setCost(Float cost) {
-        this.cost = cost;
-    }
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
-    public Address getAddress() {
-        return address;
-    }
+	public Date getDate() {
+		return date;
+	}
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
-    public Date getDate() {
-        return date;
-    }
+	public String getStatus() {
+		return status;
+	}
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", user_id=" + user_id +
-                ", fullName='" + fullName + '\'' +
-                ", goods=" + goods +
-                ", cost=" + cost +
-                ", address=" + address +
-                ", date=" + date +
-                ", status='" + status + '\'' +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "Order{" +
+				"id=" + id +
+				", fullName='" + fullName + '\'' +
+				", goods=" + goods +
+				", cost=" + cost +
+				", address=" + address +
+				", date=" + date +
+				", status='" + status + '\'' +
+				'}';
+	}
 }

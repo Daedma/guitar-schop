@@ -3,15 +3,12 @@ package com.mycompany.app.models;
 import java.util.List;
 
 import org.bson.codecs.pojo.annotations.BsonId;
-import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.types.ObjectId;
 
 public class Category {
 	@BsonId
 	private ObjectId id;
-	@BsonProperty("name")
 	private String name;
-	@BsonProperty("goods_id")
 	private List<ObjectId> goods;
 
 	public ObjectId getId() {
@@ -40,10 +37,6 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return "Category{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				", goods=" + goods +
-				'}';
+		return "Category [\n  name=" + name + ",\n  goods=" + goods + "\n]";
 	}
 }
