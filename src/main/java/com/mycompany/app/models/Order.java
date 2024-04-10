@@ -1,18 +1,29 @@
 package com.mycompany.app.models;
 
+import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.types.ObjectId;
 
 import java.util.Date;
 import java.util.List;
 
 public class Order {
+    @BsonId
     private ObjectId id;
+    @BsonProperty("user_id")
+    private ObjectId user_id;
+    @BsonProperty("full_name")
     private String fullName;
+    @BsonProperty("goods_id")
     private List<ObjectId> goods;
+    @BsonProperty("cost")
     private Float cost;
+    @BsonProperty("address")
     private Address address;
+    @BsonProperty("date")
     private Date date;
-    private String status;
+    @BsonProperty("status")
+    private String status; // accepted, completed, declined
 
     public ObjectId getId() {
         return id;
@@ -20,6 +31,14 @@ public class Order {
 
     public void setId(ObjectId id) {
         this.id = id;
+    }
+
+    public ObjectId getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(ObjectId user_id) {
+        this.user_id = user_id;
     }
 
     public String getFullName() {
@@ -74,6 +93,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
+                ", user_id=" + user_id +
                 ", fullName='" + fullName + '\'' +
                 ", goods=" + goods +
                 ", cost=" + cost +
