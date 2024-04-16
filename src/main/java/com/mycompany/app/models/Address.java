@@ -1,14 +1,21 @@
 package com.mycompany.app.models;
 
 import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.types.ObjectId;
 
 public class Address {
 	@BsonId
 	private ObjectId id;
+	@BsonProperty("index")
 	private Integer index;
+	@BsonProperty("city")
 	private String city;
+	@BsonProperty("street")
+	private String street;
+	@BsonProperty("building")
 	private String building;
+	@BsonProperty("flat")
 	private Integer flat;
 
 	public ObjectId getId() {
@@ -35,6 +42,14 @@ public class Address {
 		this.city = city;
 	}
 
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
 	public String getBuilding() {
 		return building;
 	}
@@ -54,8 +69,10 @@ public class Address {
 	@Override
 	public String toString() {
 		return "Address{" +
-				"index=" + index +
+				"id=" + id +
+				", index=" + index +
 				", city='" + city + '\'' +
+				", street='" + street + '\'' +
 				", building='" + building + '\'' +
 				", flat=" + flat +
 				'}';

@@ -8,10 +8,10 @@ import org.bson.conversions.Bson;
 public class GoodFilter {
 	private String sortBy;
 	private Integer sortOrder = 1;
-	private Float minCost;
-	private Float maxCost;
+	private Double minCost;
+	private Double maxCost;
 	private String searchQuery;
-	private Float minimalRate;
+	private Double minimalRate;
 	private Boolean inStock;
 	private String type;
 	private List<String> categories;
@@ -76,19 +76,19 @@ public class GoodFilter {
 		this.sortOrder = sortAsc;
 	}
 
-	public Float getMinCost() {
+	public Double getMinCost() {
 		return minCost;
 	}
 
-	public void setMinCost(Float minCost) {
+	public void setMinCost(Double minCost) {
 		this.minCost = minCost;
 	}
 
-	public Float getMaxCost() {
+	public Double getMaxCost() {
 		return maxCost;
 	}
 
-	public void setMaxCost(Float maxCost) {
+	public void setMaxCost(Double maxCost) {
 		this.maxCost = maxCost;
 	}
 
@@ -100,11 +100,11 @@ public class GoodFilter {
 		this.searchQuery = searchQuery;
 	}
 
-	public Float getMinimalRate() {
+	public Double getMinimalRate() {
 		return minimalRate;
 	}
 
-	public void setMinimalRate(Float minimalRate) {
+	public void setMinimalRate(Double minimalRate) {
 		this.minimalRate = minimalRate;
 	}
 

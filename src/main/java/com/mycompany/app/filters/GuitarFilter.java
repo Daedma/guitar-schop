@@ -11,10 +11,10 @@ public class GuitarFilter extends GoodFilter {
 	public Bson createMongoQuery(Document query) {
 		super.createMongoQuery(query);
 		if (guitarForm != null) {
-			query.put("guitarForm", guitarForm);
+			query.put("form", guitarForm);
 		}
 		if (guitarFrets != null) {
-			query.put("guitarFrets", guitarFrets);
+			query.put("frets", guitarFrets);
 		}
 		return query;
 	}

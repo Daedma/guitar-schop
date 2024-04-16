@@ -4,18 +4,28 @@ import java.io.File;
 import java.util.List;
 
 import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.types.ObjectId;
 
 public class Good {
 	@BsonId
 	private ObjectId id;
+	@BsonProperty("name")
 	private String name;
+	@BsonProperty("description")
 	private String description;
-	private Float cost;
+	@BsonProperty("cost")
+	private Double cost;
+	@BsonProperty("images")
 	private List<File> images;
+	@BsonProperty("remaining")
 	private Integer remaining;
-	private Float rate;
+	@BsonProperty("rate")
+	private Double rate;
+	//FIXME: @BsonProperty("categories")
 	private List<ObjectId> categories;
+	@BsonProperty("type")
+	private String type;
 
 	public ObjectId getId() {
 		return id;
@@ -41,11 +51,11 @@ public class Good {
 		this.description = description;
 	}
 
-	public Float getCost() {
+	public Double getCost() {
 		return cost;
 	}
 
-	public void setCost(Float cost) {
+	public void setCost(Double cost) {
 		this.cost = cost;
 	}
 
@@ -65,11 +75,11 @@ public class Good {
 		this.remaining = remaining;
 	}
 
-	public Float getRate() {
+	public Double getRate() {
 		return rate;
 	}
 
-	public void setRate(Float rate) {
+	public void setRate(Double rate) {
 		this.rate = rate;
 	}
 
@@ -81,16 +91,26 @@ public class Good {
 		this.categories = categories;
 	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	@Override
 	public String toString() {
 		return "Good{" +
-				"name='" + name + '\'' +
+				"id=" + id +
+				", name='" + name + '\'' +
 				", description='" + description + '\'' +
 				", cost=" + cost +
 				", images=" + images +
 				", remaining=" + remaining +
 				", rate=" + rate +
 				", categories=" + categories +
+				", type='" + type + '\'' +
 				'}';
 	}
 }

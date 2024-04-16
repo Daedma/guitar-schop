@@ -10,7 +10,7 @@ import com.mycompany.app.models.Category;
 
 public class CategoryMongoDAO extends BaseMongoDAO<Category> implements CategoryDAO {
 	public CategoryMongoDAO(MongoDatabase database) {
-		super(database, "Categories", Category.class);
+		super(database, "categories_collection", Category.class);
 	}
 
 	@Override

@@ -10,7 +10,7 @@ import com.mycompany.app.models.Order;
 
 public class OrderMongoDAO extends BaseMongoDAO<Order> implements OrderDAO {
 	public OrderMongoDAO(MongoDatabase database) {
-		super(database, "Orders", Order.class);
+		super(database, "orders_collection", Order.class);
 	}
 
 	@Override

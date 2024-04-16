@@ -6,7 +6,7 @@ import com.mycompany.app.models.Good;
 public interface GoodDAO extends BaseDAO<Good> {
 	Iterable<Good> findByFilter(GoodFilter filter);
 
-	Float getMinCost();
+	Double getMinCost();
 
-	Float getMaxCost();
+	Double getMaxCost();
 }

@@ -17,7 +17,7 @@ import com.mycompany.app.models.Strings;
 public class StringsMongoDAO extends BaseMongoDAO<Strings> implements StringsDAO {
 
 	public StringsMongoDAO(MongoDatabase database) {
-		super(database, "Goods", Strings.class);
+		super(database, "goods_collection", Strings.class);
 	}
 
 	@Override
@@ -31,12 +31,12 @@ public class StringsMongoDAO extends BaseMongoDAO<Strings> implements StringsDAO
 				Updates.set("categories", entity.getCategories()),
 				Updates.set("cost", entity.getCost()),
 				Updates.set("description", entity.getDescription()),
-				Updates.set("images", entity.getImages()),
+				//Updates.set("images", entity.getImages()),
 				Updates.set("name", entity.getName()),
 				Updates.set("rate", entity.getRate()),
 				Updates.set("remaining", entity.getRemaining()),
-				Updates.set("stringGauge", entity.getStringGauge()),
-				Updates.set("stringMaterial", entity.getStringMaterial()));
+				Updates.set("gauge", entity.getStringGauge()),
+				Updates.set("material", entity.getStringMaterial()));
 	}
 
 	@Override
@@ -46,17 +46,17 @@ public class StringsMongoDAO extends BaseMongoDAO<Strings> implements StringsDAO
 	}
 
 	@Override
-	public Float getMaxCost() {
+	public Double getMaxCost() {
 		return collection.aggregate(Arrays.asList(
 				Aggregates.group(null, Accumulators.max("maxPrice", "$cost"))), Document.class).first()
-				.get("maxPrice", Float.class);
+				.get("maxPrice", Double.class);
 	}
 
 	@Override
-	public Float getMinCost() {
+	public Double getMinCost() {
 		return collection.aggregate(Arrays.asList(
 				Aggregates.group(null, Accumulators.min("minPrice", "$cost"))), Document.class).first()
-				.get("minPrice", Float.class);
+				.get("minPrice", Double.class);
 	}
 
 	@Override

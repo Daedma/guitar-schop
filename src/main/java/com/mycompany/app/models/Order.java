@@ -1,6 +1,7 @@
 package com.mycompany.app.models;
 
 import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.types.ObjectId;
 
 import java.util.Date;
@@ -9,11 +10,19 @@ import java.util.List;
 public class Order {
 	@BsonId
 	private ObjectId id;
+	@BsonProperty("user_id")
+	private ObjectId user;
+	@BsonProperty("full_name")
 	private String fullName;
+	@BsonProperty("goods_id")
 	private List<ObjectId> goods;
-	private Float cost;
+	@BsonProperty("cost")
+	private Double cost;
+	@BsonProperty("address")
 	private Address address;
+	@BsonProperty("date")
 	private Date date;
+	@BsonProperty("status")
 	private String status;
 
 	public ObjectId getId() {
@@ -22,6 +31,14 @@ public class Order {
 
 	public void setId(ObjectId id) {
 		this.id = id;
+	}
+
+	public ObjectId getUser() {
+		return user;
+	}
+
+	public void setUser(ObjectId user) {
+		this.user = user;
 	}
 
 	public String getFullName() {
@@ -40,11 +57,11 @@ public class Order {
 		this.goods = goods;
 	}
 
-	public Float getCost() {
+	public Double getCost() {
 		return cost;
 	}
 
-	public void setCost(Float cost) {
+	public void setCost(Double cost) {
 		this.cost = cost;
 	}
 
@@ -76,6 +93,7 @@ public class Order {
 	public String toString() {
 		return "Order{" +
 				"id=" + id +
+				", user=" + user +
 				", fullName='" + fullName + '\'' +
 				", goods=" + goods +
 				", cost=" + cost +

@@ -17,7 +17,7 @@ import com.mycompany.app.models.Guitar;
 public class GuitarMongoDAO extends BaseMongoDAO<Guitar> implements GuitarDAO {
 
 	public GuitarMongoDAO(MongoDatabase database) {
-		super(database, "Goods", Guitar.class);
+		super(database, "goods_collection", Guitar.class);
 	}
 
 	@Override
@@ -31,12 +31,12 @@ public class GuitarMongoDAO extends BaseMongoDAO<Guitar> implements GuitarDAO {
 				Updates.set("categories", entity.getCategories()),
 				Updates.set("cost", entity.getCost()),
 				Updates.set("description", entity.getDescription()),
-				Updates.set("guitarForm", entity.getGuitarForm()),
-				Updates.set("guitarFrets", entity.getGuitarFrets()),
-				Updates.set("images", entity.getImages()),
+				Updates.set("form", entity.getGuitarForm()),
+				Updates.set("frets", entity.getGuitarFrets()),
+				//Updates.set("images", entity.getImages()),
 				Updates.set("name", entity.getName()),
 				Updates.set("rate", entity.getRate()),
-				Updates.set("ramaining", entity.getRemaining()));
+				Updates.set("remaining", entity.getRemaining()));
 	}
 
 	@Override
@@ -56,17 +56,17 @@ public class GuitarMongoDAO extends BaseMongoDAO<Guitar> implements GuitarDAO {
 	}
 
 	@Override
-	public Float getMaxCost() {
+	public Double getMaxCost() {
 		return collection.aggregate(Arrays.asList(
 				Aggregates.group(null, Accumulators.max("maxPrice", "$cost"))), Document.class).first()
-				.get("maxPrice", Float.class);
+				.get("maxPrice", Double.class);
 	}
 
 	@Override
-	public Float getMinCost() {
+	public Double getMinCost() {
 		return collection.aggregate(Arrays.asList(
 				Aggregates.group(null, Accumulators.min("minPrice", "$cost"))), Document.class).first()
-				.get("minPrice", Float.class);
+				.get("minPrice", Double.class);
 	}
 
 }

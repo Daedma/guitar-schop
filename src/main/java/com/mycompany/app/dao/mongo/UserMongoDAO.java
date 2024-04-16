@@ -10,7 +10,7 @@ import com.mongodb.client.model.*;;
 
 public class UserMongoDAO extends BaseMongoDAO<User> implements UserDAO {
 	public UserMongoDAO(MongoDatabase database) {
-		super(database, "Users", User.class);
+		super(database, "users_collection", User.class);
 	}
 
 	@Override

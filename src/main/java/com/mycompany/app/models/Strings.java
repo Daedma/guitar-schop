@@ -1,10 +1,13 @@
 package com.mycompany.app.models;
 
 import org.bson.codecs.pojo.annotations.BsonDiscriminator;
+import org.bson.codecs.pojo.annotations.BsonProperty;
 
 @BsonDiscriminator(value = "strings", key = "type")
 public class Strings extends Good {
+	@BsonProperty("gauge")
 	String stringGauge; // натяжение (обычно пишут что-то вроде "10-46")
+	@BsonProperty("material")
 	String stringMaterial; // материал струн
 
 	public String getStringGauge() {
@@ -35,6 +38,7 @@ public class Strings extends Good {
 				", remaining=" + getRemaining() +
 				", rate=" + getRate() +
 				", categories=" + getCategories() +
+				", type=" + getType() +
 				'}';
 	}
 }

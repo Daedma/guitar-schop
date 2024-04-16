@@ -6,9 +6,9 @@ import com.mycompany.app.models.Strings;
 public interface StringsDAO extends BaseDAO<Strings> {
 	Iterable<Strings> findByFilter(StringsFilter filter);
 
-	Float getMinCost();
+	Double getMinCost();
 
-	Float getMaxCost();
+	Double getMaxCost();
 
 	Iterable<String> getStringGauges();
 

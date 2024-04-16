@@ -6,9 +6,9 @@ import com.mycompany.app.models.Guitar;
 public interface GuitarDAO extends BaseDAO<Guitar> {
 	Iterable<Guitar> findByFilter(GuitarFilter filter);
 
-	Float getMinCost();
+	Double getMinCost();
 
-	Float getMaxCost();
+	Double getMaxCost();
 
 	Iterable<String> getGuitarForms();
 

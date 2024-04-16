@@ -16,7 +16,7 @@ import com.mycompany.app.models.Good;
 
 public class GoodMongoDAO extends BaseMongoDAO<Good> implements GoodDAO {
 	public GoodMongoDAO(MongoDatabase database) {
-		super(database, "Goods", Good.class);
+		super(database, "goods_collection", Good.class);
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class GoodMongoDAO extends BaseMongoDAO<Good> implements GoodDAO {
 				Updates.set("images", entity.getImages()),
 				Updates.set("name", entity.getName()),
 				Updates.set("rate", entity.getRate()),
-				Updates.set("ramaining", entity.getRemaining()));
+				Updates.set("remaining", entity.getRemaining()));
 	}
 
 	@Override
@@ -43,16 +43,16 @@ public class GoodMongoDAO extends BaseMongoDAO<Good> implements GoodDAO {
 	}
 
 	@Override
-	public Float getMaxCost() {
+	public Double getMaxCost() {
 		return collection.aggregate(Arrays.asList(
 				Aggregates.group(null, Accumulators.max("maxPrice", "$cost"))), Document.class).first()
-				.get("maxPrice", Float.class);
+				.get("maxPrice", Double.class);
 	}
 
 	@Override
-	public Float getMinCost() {
+	public Double getMinCost() {
 		return collection.aggregate(Arrays.asList(
 				Aggregates.group(null, Accumulators.min("minPrice", "$cost"))), Document.class).first()
-				.get("minPrice", Float.class);
+				.get("minPrice", Double.class);
 	}
 }

@@ -11,10 +11,10 @@ public class StringsFilter extends GoodFilter {
 	public Bson createMongoQuery(Document query) {
 		super.createMongoQuery(query);
 		if (stringGauge != null) {
-			query.put("stringGauge", stringGauge);
+			query.put("gauge", stringGauge);
 		}
 		if (stringMaterial != null) {
-			query.put("stringMaterial", stringMaterial);
+			query.put("material", stringMaterial);
 		}
 		return query;
 	}
