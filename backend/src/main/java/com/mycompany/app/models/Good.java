@@ -22,7 +22,7 @@ public class Good {
 	private Integer remaining;
 	@BsonProperty("rate")
 	private Double rate;
-	//FIXME: @BsonProperty("categories")
+	@BsonProperty("categories")
 	private List<ObjectId> categories;
 	@BsonProperty("type")
 	private String type;

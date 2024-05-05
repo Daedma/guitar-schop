@@ -4,7 +4,7 @@ db.reviews_collection.insertMany( [
     {
         author_id: null, // ivanshapoval
         goods_id: null, // струны
-        publishing_date: Date('2024-04-09T18:01:01Z'),
+        publishing_date: new Date('2024-04-09T18:01:01Z'),
         content: 'Хорошие струны. Очень нравятся',
         rate: 5.0
     },

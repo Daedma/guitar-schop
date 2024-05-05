@@ -10,9 +10,9 @@ db.orders_collection.insertMany( [
             index: 443086,
             city: 'Самара',
             street: 'Революционная',
-            building: '50'
+            building: "50"
         },
-        date: Date('2024-03-18T16:50:44Z'),
+        date: new Date('2024-03-18T16:50:44Z'),
         status: "completed"
     },
 
@@ -25,10 +25,10 @@ db.orders_collection.insertMany( [
             index: 443001,
             city: 'Самара',
             street: 'Молодогвардейская',
-            building: '151',
-            flat: '221'
+            building: "151",
+            flat: 221
         },
-        date: Date('2024-04-10T16:50:44Z'),
+        date: new Date('2024-04-10T16:50:44Z'),
         status: "accepted"
     }
 

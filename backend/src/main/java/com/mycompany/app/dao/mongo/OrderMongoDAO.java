@@ -24,7 +24,7 @@ public class OrderMongoDAO extends BaseMongoDAO<Order> implements OrderDAO {
 				Updates.set("address", entity.getAddress()),
 				Updates.set("cost", entity.getCost()),
 				Updates.set("date", entity.getDate()),
-				Updates.set("fullName", entity.getFullName()),
+				Updates.set("full_name", entity.getFullName()),
 				Updates.set("goods", entity.getGoods()),
 				Updates.set("status", entity.getStatus()));
 	}

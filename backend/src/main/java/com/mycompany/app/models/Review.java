@@ -14,7 +14,7 @@ public class Review {
 	private ObjectId author;
 	@BsonProperty("goods_id")
 	private ObjectId goods;
-	//FIXME: @BsonProperty("publishing_date")
+	@BsonProperty("publishing_date")
 	private Date publishingDate;
 	@BsonProperty("content")
 	private String content;

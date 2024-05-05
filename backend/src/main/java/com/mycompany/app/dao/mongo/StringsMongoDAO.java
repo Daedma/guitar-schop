@@ -28,10 +28,10 @@ public class StringsMongoDAO extends BaseMongoDAO<Strings> implements StringsDAO
 	@Override
 	protected Bson createUpdateOperation(Strings entity) {
 		return Updates.combine(
-				Updates.set("categories", entity.getCategories()),
+				Updates.set("categories_id", entity.getCategories()),
 				Updates.set("cost", entity.getCost()),
 				Updates.set("description", entity.getDescription()),
-				//Updates.set("images", entity.getImages()),
+				Updates.set("images", entity.getImages()),
 				Updates.set("name", entity.getName()),
 				Updates.set("rate", entity.getRate()),
 				Updates.set("remaining", entity.getRemaining()),
