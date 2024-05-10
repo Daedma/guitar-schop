@@ -21,7 +21,7 @@ public class CategoryMongoDAO extends BaseMongoDAO<Category> implements Category
 	@Override
 	protected Bson createUpdateOperation(Category entity) {
 		return Updates.combine(
-				Updates.set("goods", entity.getGoods()),
+				Updates.set("goods_id", entity.getGoods()),
 				Updates.set("name", entity.getName()));
 	}
 }

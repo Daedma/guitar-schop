@@ -27,7 +27,7 @@ public class GoodMongoDAO extends BaseMongoDAO<Good> implements GoodDAO {
 	@Override
 	protected Bson createUpdateOperation(Good entity) {
 		return Updates.combine(
-				Updates.set("categories", entity.getCategories()),
+				Updates.set("categories_id", entity.getCategories()),
 				Updates.set("cost", entity.getCost()),
 				Updates.set("description", entity.getDescription()),
 				Updates.set("images", entity.getImages()),

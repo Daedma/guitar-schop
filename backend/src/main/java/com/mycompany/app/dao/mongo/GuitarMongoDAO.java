@@ -28,12 +28,12 @@ public class GuitarMongoDAO extends BaseMongoDAO<Guitar> implements GuitarDAO {
 	@Override
 	protected Bson createUpdateOperation(Guitar entity) {
 		return Updates.combine(
-				Updates.set("categories", entity.getCategories()),
+				Updates.set("categories_id", entity.getCategories()),
 				Updates.set("cost", entity.getCost()),
 				Updates.set("description", entity.getDescription()),
 				Updates.set("form", entity.getGuitarForm()),
 				Updates.set("frets", entity.getGuitarFrets()),
-				//Updates.set("images", entity.getImages()),
+				Updates.set("images", entity.getImages()),
 				Updates.set("name", entity.getName()),
 				Updates.set("rate", entity.getRate()),
 				Updates.set("remaining", entity.getRemaining()));

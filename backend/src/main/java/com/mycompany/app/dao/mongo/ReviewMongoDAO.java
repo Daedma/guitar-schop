@@ -27,13 +27,11 @@ public class ReviewMongoDAO extends BaseMongoDAO<Review> implements ReviewDAO {
 	@Override
 	protected Bson createUpdateOperation(Review entity) {
 		return Updates.combine(
-				Updates.set("autor", entity.getAuthor()),
+				Updates.set("author_id", entity.getAuthor()),
 				Updates.set("content", entity.getContent()),
-				Updates.set("goods", entity.getGoods()),
+				Updates.set("goods_id", entity.getGoods()),
 				Updates.set("photos", entity.getPhotos()),
-				Updates.set("publichingDate", entity.getPublishingDate()),
+				Updates.set("publiching_date", entity.getPublishingDate()),
 				Updates.set("rate", entity.getRate()));
-
-		///	FIXME
 	}
 }
