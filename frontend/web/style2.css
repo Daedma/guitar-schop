@@ -1,25 +1,4 @@
-/* .good-name{
-	font-size: 30px;
-}
-
-.good-image{
-	height: 400px;
-}
-
-.good-characteristics-list{
-	text-align: left;
-	vertical-align: top;
-}
-
-.good-rate{
-	color: gray;
-}
-
-#review-text{
-	width: 300px;
-	height: 100px;
-	resize: none;
-} */
+/* good-info.html */
 .product {
   width: 100%;
   max-width: 800px;
@@ -72,8 +51,6 @@
   width: 150px;
   font-weight: bold;
 }
-
-/*  */
 
 .product-reviews {
   width: 100%;
@@ -217,4 +194,37 @@
 
 .product-review button:hover {
   background-color: #ffa000;
+}
+
+/* order-tracking.html */
+.orders {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.orders-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.order {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.order-info {
+  margin-bottom: 10px;
+}
+
+.order-info-label {
+  font-weight: bold;
+}
+
+.order-info-value {
+  margin-left: 10px;
 }
