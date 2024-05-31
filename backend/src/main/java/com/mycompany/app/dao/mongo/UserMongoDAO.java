@@ -26,4 +26,9 @@ public class UserMongoDAO extends BaseMongoDAO<User> implements UserDAO {
 				Updates.set("role", entity.getRole()),
 				Updates.set("cart", entity.getCart()));
 	}
+
+	@Override
+	public User findUserByLogin(String login) {
+		return collection.find(Filters.eq("login", login)).first();
+	}
 }

@@ -8,6 +8,7 @@ import org.bson.types.ObjectId;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.result.InsertOneResult;
 import com.mongodb.client.result.UpdateResult;
 
 public abstract class BaseMongoDAO<T> implements BaseDAO<T> {
@@ -18,9 +19,9 @@ public abstract class BaseMongoDAO<T> implements BaseDAO<T> {
 	}
 
 	@Override
-	public T save(T entity) {
-		collection.insertOne(entity);
-		return entity;
+	public String save(T entity) {
+		InsertOneResult result = collection.insertOne(entity);
+		return result.getInsertedId().asString().toString();
 	}
 
 	@Override

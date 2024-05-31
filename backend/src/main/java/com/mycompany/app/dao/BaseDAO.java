@@ -1,7 +1,7 @@
 package com.mycompany.app.dao;
 
 public interface BaseDAO<T> {
-	T save(T entity);
+	String save(T entity);
 
 	T findById(String id);
 
