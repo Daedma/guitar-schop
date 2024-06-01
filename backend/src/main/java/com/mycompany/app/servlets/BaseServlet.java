@@ -4,14 +4,27 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.mycompany.app.dao.DAOFactory;
+import com.mycompany.app.dao.mongo.MongoDAOFactory;
+import com.mycompany.app.util.MongoDBConnection;
 
 public class BaseServlet extends HttpServlet {
 	protected static final Gson GSON = new Gson();
+
+	protected DAOFactory daoFactory;
+
+	@Override
+	public void init() throws ServletException {
+		MongoDBConnection connection = new MongoDBConnection();
+		daoFactory = new MongoDAOFactory(connection.getDatabase());
+		super.init();
+	}
 
 	protected void writeObject(HttpServletResponse resp, int code, Object obj) throws IOException {
 		resp.setStatus(code);

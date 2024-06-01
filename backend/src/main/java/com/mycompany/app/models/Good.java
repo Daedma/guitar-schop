@@ -17,7 +17,7 @@ public class Good {
 	@BsonProperty("cost")
 	private Double cost;
 	@BsonProperty("images")
-	private List<File> images;
+	private List<String> images;
 	@BsonProperty("remaining")
 	private Integer remaining;
 	@BsonProperty("rate")
@@ -59,11 +59,11 @@ public class Good {
 		this.cost = cost;
 	}
 
-	public List<File> getImages() {
+	public List<String> getImages() {
 		return images;
 	}
 
-	public void setImages(List<File> images) {
+	public void setImages(List<String> images) {
 		this.images = images;
 	}
 

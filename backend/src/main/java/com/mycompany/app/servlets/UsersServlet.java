@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.mycompany.app.dao.UserDAO;
-import com.mycompany.app.dao.mongo.UserMongoDAO;
 import com.mycompany.app.models.User;
-import com.mycompany.app.util.MongoDBConnection;
 
 @WebServlet(name = "users-servlet", urlPatterns = { "/api/users/register", "/api/users/login" })
 public class UsersServlet extends BaseServlet {
@@ -36,8 +34,7 @@ public class UsersServlet extends BaseServlet {
 	private void login(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		User enteredData = GSON.fromJson(getJsonFromRequest(req), User.class);
 
-		MongoDBConnection connection = new MongoDBConnection();
-		UserDAO userDAO = new UserMongoDAO(connection.getDatabase());
+		UserDAO userDAO = daoFactory.createUserDAO();
 
 		User user = userDAO.findUserByLogin(enteredData.getLogin());
 		if (user == null || user.getPassword() != enteredData.getPassword()) {
@@ -66,8 +63,7 @@ public class UsersServlet extends BaseServlet {
 			return;
 		}
 
-		MongoDBConnection connection = new MongoDBConnection();
-		UserDAO userDAO = new UserMongoDAO(connection.getDatabase());
+		UserDAO userDAO = daoFactory.createUserDAO();
 
 		if (userDAO.findUserByLogin(newUser.getLogin()) != null) {
 			writeError(resp, HttpServletResponse.SC_CONFLICT, "Login is already taken");
