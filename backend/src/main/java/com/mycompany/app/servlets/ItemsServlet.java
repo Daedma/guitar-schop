@@ -17,6 +17,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 import org.bson.types.ObjectId;
 
+import com.mycompany.app.dao.CategoryDAO;
 import com.mycompany.app.filters.GuitarFilter;
 import com.mycompany.app.filters.StringsFilter;
 import com.mycompany.app.models.Good;
@@ -136,13 +137,16 @@ public class ItemsServlet extends BaseServlet {
 		try {
 
 			List<FileItem> formItems = upload.parseRequest(req);
-			// FIXME спаггети-код
-			// TODO согласование с категориями
+			// FIXME спаггети-код (уже поздно...)
 			if (newItem.getType().equalsIgnoreCase("guitar")) {
 				Guitar newGuitar = GSON.fromJson(getJsonFromRequest(req), Guitar.class);
 				String id = daoFactory.createGuitarDAO().save(newGuitar);
 				newGuitar.setId(new ObjectId(id));
 				newGuitar.setImages(saveItemImages(id, formItems));
+				CategoryDAO categoryDAO = daoFactory.createCategoryDAO();
+				for (String category : newItem.getCategories()) {
+					categoryDAO.addGood(category, id);
+				}
 				daoFactory.createGuitarDAO().update(newGuitar);
 				writeObject(resp, HttpServletResponse.SC_CREATED, newGuitar);
 			} else if (newItem.getType().equalsIgnoreCase("string")) {
@@ -150,6 +154,10 @@ public class ItemsServlet extends BaseServlet {
 				String id = daoFactory.createStringsDAO().save(newStrings);
 				newStrings.setId(new ObjectId(id));
 				newStrings.setImages(saveItemImages(id, formItems));
+				CategoryDAO categoryDAO = daoFactory.createCategoryDAO();
+				for (String category : newItem.getCategories()) {
+					categoryDAO.addGood(category, id);
+				}
 				daoFactory.createStringsDAO().save(newStrings);
 				writeObject(resp, HttpServletResponse.SC_CREATED, newStrings);
 			}
@@ -175,4 +183,5 @@ public class ItemsServlet extends BaseServlet {
 		}
 		return names;
 	}
+
 }

@@ -1,6 +1,5 @@
 package com.mycompany.app.models;
 
-import java.io.File;
 import java.util.List;
 
 import org.bson.codecs.pojo.annotations.BsonId;
@@ -23,7 +22,7 @@ public class Good {
 	@BsonProperty("rate")
 	private Double rate;
 	@BsonProperty("categories")
-	private List<ObjectId> categories;
+	private List<String> categories;
 	@BsonProperty("type")
 	private String type;
 
@@ -83,11 +82,11 @@ public class Good {
 		this.rate = rate;
 	}
 
-	public List<ObjectId> getCategories() {
+	public List<String> getCategories() {
 		return categories;
 	}
 
-	public void setCategories(List<ObjectId> categories) {
+	public void setCategories(List<String> categories) {
 		this.categories = categories;
 	}
 
