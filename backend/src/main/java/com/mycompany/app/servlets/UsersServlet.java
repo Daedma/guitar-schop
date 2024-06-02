@@ -14,10 +14,6 @@ import com.mycompany.app.models.User;
 
 @WebServlet(name = "users-servlet", urlPatterns = { "/api/users/register", "/api/users/login" })
 public class UsersServlet extends BaseServlet {
-	@Override
-	public void init() throws ServletException {
-		super.init();
-	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

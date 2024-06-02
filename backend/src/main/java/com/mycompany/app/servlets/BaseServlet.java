@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.mycompany.app.dao.DAOFactory;
 import com.mycompany.app.dao.mongo.MongoDAOFactory;
 import com.mycompany.app.util.MongoDBConnection;
@@ -32,6 +33,15 @@ public class BaseServlet extends HttpServlet {
 		resp.setContentType("application/json");
 		resp.setCharacterEncoding("UTF-8");
 		out.print(GSON.toJson(obj));
+		out.flush();
+	}
+
+	protected void writeJsonElement(HttpServletResponse resp, int code, JsonElement obj) throws IOException {
+		resp.setStatus(code);
+		PrintWriter out = resp.getWriter();
+		resp.setContentType("application/json");
+		resp.setCharacterEncoding("UTF-8");
+		out.print(obj.toString());
 		out.flush();
 	}
 
