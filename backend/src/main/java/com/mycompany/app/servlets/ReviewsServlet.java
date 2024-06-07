@@ -21,7 +21,7 @@ import com.mycompany.app.models.Good;
 import com.mycompany.app.models.Review;
 import com.mycompany.app.models.User;
 
-@WebServlet(name = "reviews-servlet", urlPatterns = { "api/reviews*", "api/reviews" })
+@WebServlet(name = "reviews-servlet", urlPatterns = { "/api/reviews/*", "/api/reviews" })
 public class ReviewsServlet extends BaseServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
