@@ -193,7 +193,7 @@ public class ItemsServlet extends BaseServlet {
 				File storeFile = new File(uploadPath + File.separator + fileName);
 				item.write(storeFile);
 				imageIndex++;
-				names.add(fileName);
+				names.add(UPLOAD_DIRECTORY + fileName);
 			}
 		}
 		return names;
