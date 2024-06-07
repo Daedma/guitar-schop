@@ -28,26 +28,26 @@ public class UsersServlet extends BaseServlet {
 	}
 
 	private void login(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		User enteredData = GSON.fromJson(getJsonFromRequest(req), User.class);
+
+		User enteredData = gson.fromJson(getJsonFromRequest(req), User.class);
 
 		UserDAO userDAO = daoFactory.createUserDAO();
 
 		User user = userDAO.findUserByLogin(enteredData.getLogin());
-		if (user == null || user.getPassword() != enteredData.getPassword()) {
+		if (user == null || !user.getPassword().equals(enteredData.getPassword())) {
 			writeError(resp, HttpServletResponse.SC_UNAUTHORIZED, "Invalid login or password");
 			return;
 		}
 
-		writeObject(resp, HttpServletResponse.SC_OK, user);
-
 		HttpSession session = req.getSession(true);
-		session.setAttribute("id", user.getId());
+		session.setAttribute("id", user.getId().toHexString());
 		session.setAttribute("login", user.getLogin());
 		session.setAttribute("role", user.getRole());
+		writeObject(resp, HttpServletResponse.SC_OK, user);
 	}
 
 	private void register(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		User newUser = GSON.fromJson(getJsonFromRequest(req), User.class);
+		User newUser = gson.fromJson(getJsonFromRequest(req), User.class);
 
 		if (newUser.getLogin().isEmpty() || newUser.getPassword().isEmpty()) {
 			writeError(resp, HttpServletResponse.SC_BAD_REQUEST, "Login and password are required");

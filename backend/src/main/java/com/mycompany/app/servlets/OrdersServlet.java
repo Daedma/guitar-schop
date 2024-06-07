@@ -1,7 +1,6 @@
 package com.mycompany.app.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -58,7 +57,7 @@ public class OrdersServlet extends BaseServlet {
 	}
 
 	private void createOrder(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		Order order = GSON.fromJson(getJsonFromRequest(req), Order.class);
+		Order order = gson.fromJson(getJsonFromRequest(req), Order.class);
 		order.setDate(new Date());
 		order.setStatus("new");
 

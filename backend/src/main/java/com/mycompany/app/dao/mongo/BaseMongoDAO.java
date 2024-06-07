@@ -21,7 +21,7 @@ public abstract class BaseMongoDAO<T> implements BaseDAO<T> {
 	@Override
 	public String save(T entity) {
 		InsertOneResult result = collection.insertOne(entity);
-		return result.getInsertedId().asString().toString();
+		return result.getInsertedId().asObjectId().getValue().toHexString();
 	}
 
 	@Override

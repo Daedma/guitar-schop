@@ -117,7 +117,7 @@ public class ItemsServlet extends BaseServlet {
 			writeError(resp, HttpServletResponse.SC_FORBIDDEN, "Users can to add new items only with role admin");
 		}
 
-		Good newItem = GSON.fromJson(getJsonFromRequest(req), Good.class);
+		Good newItem = gson.fromJson(getJsonFromRequest(req), Good.class);
 
 		if (newItem.getType() == null || !newItem.getType().equalsIgnoreCase("guitar")
 				|| !newItem.getType().equalsIgnoreCase("string")) {
@@ -139,7 +139,7 @@ public class ItemsServlet extends BaseServlet {
 			List<FileItem> formItems = upload.parseRequest(req);
 			// FIXME спаггети-код (уже поздно...)
 			if (newItem.getType().equalsIgnoreCase("guitar")) {
-				Guitar newGuitar = GSON.fromJson(getJsonFromRequest(req), Guitar.class);
+				Guitar newGuitar = gson.fromJson(getJsonFromRequest(req), Guitar.class);
 				String id = daoFactory.createGuitarDAO().save(newGuitar);
 				newGuitar.setId(new ObjectId(id));
 				newGuitar.setImages(saveItemImages(id, formItems));
@@ -150,7 +150,7 @@ public class ItemsServlet extends BaseServlet {
 				daoFactory.createGuitarDAO().update(newGuitar);
 				writeObject(resp, HttpServletResponse.SC_CREATED, newGuitar);
 			} else if (newItem.getType().equalsIgnoreCase("string")) {
-				Strings newStrings = GSON.fromJson(getJsonFromRequest(req), Strings.class);
+				Strings newStrings = gson.fromJson(getJsonFromRequest(req), Strings.class);
 				String id = daoFactory.createStringsDAO().save(newStrings);
 				newStrings.setId(new ObjectId(id));
 				newStrings.setImages(saveItemImages(id, formItems));

@@ -56,7 +56,7 @@ public class ReviewsServlet extends BaseServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Review review = GSON.fromJson(getJsonFromRequest(req), Review.class);
+		Review review = gson.fromJson(getJsonFromRequest(req), Review.class);
 		review.setPublishingDate(new Date());
 		if (review.getAuthor() == null || review.getGoods() == null || review.getContent() == null
 				|| review.getRate() == null || review.getRate() < 1 || review.getRate() > 5) {
