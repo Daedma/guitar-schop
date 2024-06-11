@@ -134,15 +134,14 @@ public class ItemsServlet extends BaseServlet {
 			Good newItem = gson.fromJson(textData, Good.class);
 
 			if (newItem.getType() == null || !(newItem.getType().equalsIgnoreCase("guitar")
-					|| newItem.getType().equalsIgnoreCase("string"))) {
+					|| newItem.getType().equalsIgnoreCase("strings"))) {
 				writeError(resp, HttpServletResponse.SC_BAD_REQUEST, "Invalid item type");
 				return;
 			}
 
 			if (newItem.getName() == null || newItem.getName().isEmpty()
 					|| newItem.getDescription() == null || newItem.getDescription().isEmpty()
-					|| newItem.getCost() == null || newItem.getImages() == null || newItem.getImages().isEmpty()
-					|| newItem.getRemaining() == null || newItem.getCategories() == null
+					|| newItem.getCost() == null || newItem.getRemaining() == null || newItem.getCategories() == null
 					|| newItem.getCategories().isEmpty()) {
 				writeError(resp, HttpServletResponse.SC_BAD_REQUEST, "Invalid item data");
 				return;
@@ -160,7 +159,7 @@ public class ItemsServlet extends BaseServlet {
 				}
 				daoFactory.createGuitarDAO().update(newGuitar);
 				writeObject(resp, HttpServletResponse.SC_CREATED, newGuitar);
-			} else if (newItem.getType().equalsIgnoreCase("string")) {
+			} else if (newItem.getType().equalsIgnoreCase("strings")) {
 				Strings newStrings = gson.fromJson(textData, Strings.class);
 				String id = daoFactory.createStringsDAO().save(newStrings);
 				newStrings.setId(new ObjectId(id));
@@ -169,7 +168,7 @@ public class ItemsServlet extends BaseServlet {
 				for (String category : newItem.getCategories()) {
 					categoryDAO.addGood(category, id);
 				}
-				daoFactory.createStringsDAO().save(newStrings);
+				daoFactory.createStringsDAO().update(newStrings);
 				writeObject(resp, HttpServletResponse.SC_CREATED, newStrings);
 			}
 		} catch (Exception e) {
