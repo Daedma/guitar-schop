@@ -52,9 +52,10 @@ public class ItemsServlet extends BaseServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String pathInfo = req.getPathInfo();
-		if (pathInfo.matches("^/[0-9a-fA-F]{24}$*")) { // /api/items
+
+		if (pathInfo != null && pathInfo.matches("^/[0-9a-fA-F]{24}$*")) { // /api/items
 			getItemById(req, resp);
-		} else if (pathInfo.endsWith("")) { // /api/items/{id}
+		} else if (pathInfo == null || pathInfo.endsWith("")) { // /api/items/{id}
 			searchItems(req, resp);
 		} else {
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
