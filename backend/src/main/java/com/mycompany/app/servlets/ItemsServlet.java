@@ -82,6 +82,7 @@ public class ItemsServlet extends BaseServlet {
 
 		if (type.equalsIgnoreCase("guitar")) {
 			GuitarFilter filter = new GuitarFilter();
+			filter.setType("guitar");
 			if (query != null) {
 				filter.setSearchQuery(query);
 			}
@@ -89,6 +90,7 @@ public class ItemsServlet extends BaseServlet {
 			writeObject(resp, HttpServletResponse.SC_OK, guitars);
 		} else if (type.equalsIgnoreCase("strings")) {
 			StringsFilter filter = new StringsFilter();
+			filter.setType("strings");
 			if (query != null) {
 				filter.setSearchQuery(query);
 			}
