@@ -21,7 +21,7 @@ import com.mycompany.app.models.User;
 
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet(name = "cart-servlet", urlPatterns = { "/api/cart", "/api/cart/*" })
+@WebServlet(name = "cart-servlet", urlPatterns = { "/api/cart" })
 public class CartServlet extends BaseServlet {
 
 	@Override
@@ -35,8 +35,7 @@ public class CartServlet extends BaseServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String uri = req.getRequestURI();
-		if (uri.matches("/api/cart/[a-zA-Z0-9]*")) { // /api/cart/{user_id}
+		if (req.getRequestURI().endsWith("")) { // /api/cart
 			getItemsFromCart(req, resp);
 		} else {
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
@@ -45,8 +44,8 @@ public class CartServlet extends BaseServlet {
 
 	private void addItemToCart(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		JsonObject newItem = JsonParser.parseString(getJsonFromRequest(req)).getAsJsonObject();
-		String goodId = newItem.getAsJsonObject("itemId").getAsString();
-		int quantity = newItem.getAsJsonObject("quantity").getAsInt();
+		String goodId = newItem.get("itemId").getAsString();
+		int quantity = newItem.get("quantity").getAsInt();
 		GoodDAO goodDAO = daoFactory.createGoodDAO();
 		Good good = goodDAO.findById(goodId);
 
@@ -90,19 +89,15 @@ public class CartServlet extends BaseServlet {
 	}
 
 	private void getItemsFromCart(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		String userId = req.getRequestURI().substring("/api/cart/".length());
-
-		if (userId == null || userId.isEmpty()) {
-			writeError(resp, HttpServletResponse.SC_BAD_REQUEST, "Invalid user id");
+		HttpSession session = req.getSession(false);
+		if (session == null || session.getAttribute("id") == null) {
+			writeError(resp, HttpServletResponse.SC_BAD_REQUEST, "User not logged in");
 			return;
 		}
 
-		User user = daoFactory.createUserDAO().findById(userId);
-
-		if (user == null) {
-			writeError(resp, HttpServletResponse.SC_BAD_REQUEST, "Invalid user id");
-			return;
-		}
+		String userId = (String) session.getAttribute("id");
+		UserDAO userDAO = daoFactory.createUserDAO();
+		User user = userDAO.findById(userId);
 
 		JsonArray cart = new JsonArray();
 		GoodDAO goodDAO = daoFactory.createGoodDAO();
