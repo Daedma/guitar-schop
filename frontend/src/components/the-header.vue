@@ -1,12 +1,30 @@
-<script setup>
+<script>
+import { useStore } from 'vuex'
+import {computed } from "vue"
 
-import { ref } from 'vue'
-const isAuth = ref()
-const isAdmin = ref()
 
-// Когда будет сделана логика на бэке, нужно
-// записывать информацию о входе пользователя в Local storage (true/false)
-
+export default {
+  setup() {
+    const store = useStore()
+    let customerData = computed(() => store.state.isAuth)
+    let adminData = computed(() => store.state.isAdmin)
+    return {
+      isCustomer: customerData,
+      isAdmin: adminData
+    }
+  },
+  methods: {
+    checkStatus() {
+      const store = useStore()
+      let customerData = computed(() => store.state.isAuth)
+      let adminData = computed(() => store.state.isAdmin)
+      return {
+        customerData: customerData,
+        adminData: adminData
+      }
+    }
+  }
+}
 </script>
 
 <template>
@@ -31,20 +49,20 @@ const isAdmin = ref()
         <ul class="cart-sect">
           <li>
             <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-            <router-link to="/sign-in" v-if="isAuth">Выйти</router-link>
-            <router-link to="/sign-in" v-else>Войти</router-link>
+            <router-link to="/" v-if="isCustomer || isAdmin">Выйти</router-link>
+            <router-link to="/sign-in" v-else> Войти </router-link>
           </li>
           <li>
             <i class="fa fa-heart-o" aria-hidden="true"></i>
-            <router-link to="/tracking" v-if="isAuth">Мои заказы</router-link>
+            <router-link to="/tracking" v-if="isCustomer==true">Мои заказы</router-link>
           </li>
           <li>
             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-            <router-link to="/cart" v-if="isAuth">Корзина</router-link>
+            <router-link to="/cart" v-if="isCustomer==true">Корзина</router-link>
           </li>
           <li>
             <i class="fa fa-plus" aria-hidden="true"></i>
-            <router-link to="/new-good" v-if="isAuth&&isAdmin">Добавить товар</router-link>
+            <router-link to="/new-good" v-if="isAdmin==true">Добавить товар</router-link>
           </li>
         </ul>
       </div>

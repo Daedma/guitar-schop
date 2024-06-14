@@ -1,7 +1,4 @@
 <script setup>
-function updateRating(value) {
-  document.getElementById('rating-value').value = value;
-}
 </script>
 
 <template>

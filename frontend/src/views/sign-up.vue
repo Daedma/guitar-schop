@@ -1,8 +1,48 @@
-<script setup>
-// import { ref } from 'vue'
-//
-// const isAuth = ref()
-// const isAdmin = ref(
+<script>
+
+import axios from 'axios'
+
+export default {
+  data() {
+    return {
+      login: '',
+      password: '',
+      registerLogin: '',
+      registerPassword: '',
+      showRegisterForm: false,
+    }
+  },
+  methods: {
+    async registerUser() {
+      try {
+        const response = await axios.post('http://localhost:8080/guitar-shop/api/users/register', {
+          login: this.login,
+          password: this.password
+        }, { withCredentials: true });
+
+        if (response.status === 201) {
+          localStorage.setItem('user', JSON.stringify(response.data));
+          const userInfo = JSON.parse(response.request.responseText);
+
+          if (userInfo.role == 'admin') {
+            this.$store.commit('doneAuthAsAdmin', true)
+          }
+          if (userInfo.role == 'client') {
+            this.$store.commit('doneAuthAsClient', true)
+          }
+          window.location = '/';
+        }
+      } catch (error) {
+        if (error.response && error.response.status !== 201) {
+          // Обработайте ошибку входа, например, покажите сообщение об ошибке
+          console.log(error.response.data.error);
+        } else {
+          console.error(error);
+        }
+      }
+    },
+  },
+}
 </script>
 
 <template>
@@ -13,17 +53,15 @@
           <a>Введите логин и пароль.</a>
         </sit>
       </div>
-      <form @submit.prevent="signingUp">
         <div class="login-textbox">
-          <input required class="login-textbox-text" type="text" Placeholder="Логин">
+          <input required v-model="login" class="login-textbox-text" type="text" Placeholder="Логин">
         </div>
         <div class="password-textbox">
-          <input required class="password-textbox-text" type="text" Placeholder="Пароль">
+          <input required v-model="password" class="password-textbox-text" type="text" Placeholder="Пароль">
         </div>
         <div class="button-sign-up">
-          <router-link to="/" class="button-sign-up-text" target="_blank">Зарегистрироваться!</router-link>
+          <a class="button-sign-up-text" @click.prevent="registerUser">Зарегистрироваться!</a>
         </div>
-      </form>
     </div>
   </div>
 </template>

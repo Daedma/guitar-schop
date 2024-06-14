@@ -11,6 +11,8 @@ import SignInPage from "@/views/sign-in.vue";
 import SignUpPage from "@/views/sign-up.vue";
 import StringsPage from "@/views/strings-page.vue";
 
+import 'bootstrap/dist/css/bootstrap.css'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [

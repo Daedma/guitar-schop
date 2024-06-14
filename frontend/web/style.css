@@ -1,0 +1,330 @@
+/********** Common CSS Starts **********/
+html, body {
+    font-family: Roboto, sans-serif, arial;
+    font-size: 14px;
+    color: #242424;
+    font-weight: 400;
+}
+html {
+    -webkit-text-size-adjust:100%;
+    -ms-text-size-adjust:100%;
+    font-size:10px;
+    -webkit-tap-highlight-color:transparent
+}
+* {
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    outline:0;
+}
+.container {
+    width:1150px;
+    margin:0px auto;
+    display:table;
+}
+.width-25 {
+    width:25%;
+    float:left;
+}
+.width-50 {
+    width:50%;
+    float:left;
+}
+.width-30 {
+    width:38%;
+    float:right;
+}
+.width-100 {
+    width:100%;
+    float:left;
+}
+/********** Common CSS Ends **********/
+
+/********** Top Header CSS Code Starts  **********/
+.top-header {
+    background: #ffffff;
+    padding: 8px 0px;
+    border-bottom: 1px solid #3131315e;
+}
+.logo img{
+    width: 320px;
+    height: 90px;
+}
+
+/********** Top Header CSS Code Ends  **********/
+
+/**********  Logo and Search Panel CSS Code Starts  **********/
+.search-panel {
+    background: #f13f31;
+    padding: 12px 0px;
+}
+.search-textbox {
+    padding-left: 16px;
+    height: 40px;
+    width: 80%;
+    border: 1px solid #fff;
+    float: left;
+}
+.search-button {
+    height: 42px;
+    width: 55px;
+    border: none;
+    background: white;
+    float: left;
+}
+.search-button i {
+    color: #f13f31;
+}
+.cart-sect {
+    list-style: none;
+    float: left;
+    margin-top: 10px;
+}
+.cart-sect li {
+    float: left;
+    padding: 0px 6px;
+}
+.cart-sect li a {
+    font-size: 16px;
+    color: #ffffff;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-decoration: none;
+}
+.cart-sect li i {
+    font-size: 16px;
+    color: #ffffff;
+}
+/**********  Logo and Search Panel CSS Code Ends  **********/
+
+/**********  Main Menu CSS Code Starts  **********/
+.main-menu {
+    list-style: none;
+}
+.main-menu a {
+    font-weight: 500;
+    color: #2b304a;
+    font-size: 17px;
+    font-family: Roboto, sans-serif, arial;
+    text-decoration: none;
+}
+.main-menu li {
+    float: left;
+    padding: 12px 20px;
+}
+/**********  Main Menu CSS Code Ends  **********/
+
+/**********  START PAGE  **********/
+.hello-text sit {
+    position:relative;
+    top: 16px;
+    font-weight: 500;
+    color: #2b304a;
+    font-size: 24px;
+    font-family: Roboto, sans-serif, arial;
+    text-decoration: none;
+}
+.hello-text-2 a {
+    position: relative;
+    top: 40px;
+    line-height: 1.7;
+    font-size: 16px;
+    text-decoration: none;
+}
+/**********  START PAGE ENDS  **********/
+
+/**********  SIGN IN/UP PAGE  **********/
+.sign-in {
+    padding-top: 40px;
+}
+.sign-in-text sit {
+    font-weight: 500;
+    color: #2b304a;
+    font-size: 17px;
+    font-family: Roboto, sans-serif, arial;
+    text-decoration: none;
+}
+.login-textbox {
+    width:30%;
+    float:left;
+    margin-top: 17px;
+}
+.login-textbox-text {
+    padding: 16px;
+    height: 30px;
+    width: 80%;
+    border-radius: 4px;
+    border: 1px solid #767676;
+    float: left;
+}
+.password-textbox {
+    position: relative;
+    top: 65px;
+    left: -345px;
+    width:30%;
+    float:left;
+    margin-top: 7px;
+}
+.password-textbox-text {
+    padding: 16px;
+    height: 30px;
+    width: 80%;
+    border-radius: 4px;
+    border: 1px solid #767676;
+    float: left;
+}
+
+a.button-sign-in-text {
+    display: inline-block;
+    background: #ffffff;
+    position: relative;
+    top: 115px;
+    left: -870px;
+    color: #f13f31;
+    padding: 12px;
+    border: 2px solid #f13f31; /* Параметры рамки */
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1;
+    font-weight: 100;
+}
+
+a.button-sign-up-text {
+    display: inline-block;
+    background: #ffffff;
+    position: relative;
+    top: 115px;
+    left: -807px;
+    color: #f13f31;
+    padding: 12px;
+    border: 2px solid #f13f31; /* Параметры рамки */
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1;
+    font-weight: 100;
+}
+
+.button-sign-up {
+    margin: 24px;
+    text-align: center;
+}
+/**********  SIGN IN/UP PAGE ENDS  **********/
+
+/**********  ORDER PAGE  **********/
+.order-fio-textbox {
+    width:30%;
+    float:left;
+    margin-top: 55px;
+}
+.order-index-textbox {
+    width:30%;
+    float:left;
+    margin-top: 55px;
+}
+.order-city-textbox {
+    width:30%;
+    float:left;
+    margin-top: 55px;
+}
+.order-street-textbox {
+    width:30%;
+    float:left;
+    margin-top: 33px;
+}
+.order-building-textbox {
+    width:30%;
+    float:left;
+    margin-top: 33px;
+}
+.order-flat-textbox {
+    width:30%;
+    float:left;
+    margin-top: 33px;
+}
+.order-textbox-text {
+    padding: 16px;
+    height: 30px;
+    width: 80%;
+    border-radius: 4px;
+    border: 1px solid #767676;
+    float: left;
+}
+/**********  ORDER PAGE  **********/
+
+/**********  Product-Section CSS Code Starts  **********/
+
+.product-text sit {
+    position:relative;
+    top: 16px;
+    padding: 16px;
+    font-weight: 500;
+    color: #2b304a;
+    font-size: 24px;
+    font-family: Roboto, sans-serif, arial;
+    text-decoration: none;
+}
+.product-section {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.product-img {
+    width:220px;
+    height:220px;
+}
+.product-img-center {
+    text-align:center;
+}
+.product-border {
+    border: 1px solid #d1d1d1;
+    padding:20px;
+}
+.product-name a {
+    color: #232b33;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: Roboto, sans-serif, arial;
+}
+.product-rating {
+    color: #FFC315;
+    font-size: 14px;
+    padding-top: 6px;
+}
+.product-rating span {
+    font-weight: 600;
+    color: #3c3b3b8c;
+    font-size: 12px;
+    font-family: Roboto, sans-serif, arial;
+}
+.product-discounted-price {
+    color: #333;
+    font-size: 18px;
+    letter-spacing: 0.1px;
+    font-weight: 600;
+    font-family: Roboto, sans-serif, arial;
+}
+.product-original-price {
+    color: #6f6f6f;
+    text-decoration: line-through;
+    font-size:14px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.product-discount {
+    border: 1px solid #ccc;
+    background: #fff;
+    display: inline-block;
+    font-size: 10px;
+    color: #999;
+    padding: 5px;
+    border-radius: 1px;
+    float:right;
+}
+.product-price {
+    margin-top:15px;
+}
+/**********   Product-Section CSS Code Ends  **********/
+
