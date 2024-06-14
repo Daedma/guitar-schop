@@ -40,7 +40,7 @@ public class OrdersServlet extends BaseServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if (req.getRequestURI().equals("/api/orders")) { // /api/orders
+		if (req.getRequestURI().endsWith("")) { // /api/orders
 			getOrders(req, resp);
 		} else {
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
@@ -49,7 +49,9 @@ public class OrdersServlet extends BaseServlet {
 
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if (req.getRequestURI().matches("/api/orders/[a-zA-Z0-9]*")) { // /api/orders/{id}
+		String pathInfo = req.getPathInfo();
+
+		if (pathInfo != null && pathInfo.matches("^/[0-9a-fA-F]{24}$*")) { // /api/orders/{id}
 			updateOrderStatus(req, resp);
 		} else {
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
@@ -57,7 +59,13 @@ public class OrdersServlet extends BaseServlet {
 	}
 
 	private void createOrder(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		HttpSession session = req.getSession(false);
+		if (session == null || session.getAttribute("id") == null) {
+			writeError(resp, HttpServletResponse.SC_BAD_REQUEST, "User not logged in");
+			return;
+		}
 		Order order = gson.fromJson(getJsonFromRequest(req), Order.class);
+		order.setUserId((new ObjectId((String) session.getAttribute("id"))));
 		order.setDate(new Date());
 		order.setStatus("new");
 
@@ -70,23 +78,11 @@ public class OrdersServlet extends BaseServlet {
 			return;
 		}
 
-		double actualCost = 0;
-		GoodDAO goodDAO = daoFactory.createGoodDAO();
-		Map<ObjectId, Integer> goodsWithQuantity = new HashMap<>();
-		for (ObjectId goodId : order.getGoods()) {
-			Good good = goodDAO.findById(goodId.toHexString());
-			if (good == null) {
-				writeError(resp, HttpServletResponse.SC_BAD_REQUEST, "Invalid item id");
-				return;
-			}
-			if (good.getRemaining() < 1) {
-				writeError(resp, HttpServletResponse.SC_BAD_REQUEST, "Not enough items in stock");
-				return;
-			}
-			goodsWithQuantity.put(goodId, goodsWithQuantity.getOrDefault(goodId, 0) + 1);
-			actualCost += good.getCost();
-		}
+		order.setGoods(user.getCart());
 
+		GoodDAO goodDAO = daoFactory.createGoodDAO();
+
+		double actualCost = 0;
 		Bag<ObjectId> goodsBag = new HashBag<ObjectId>(order.getGoods());
 		for (ObjectId goodId : goodsBag.uniqueSet()) {
 			Good good = goodDAO.findById(goodId.toHexString());
@@ -98,7 +94,7 @@ public class OrdersServlet extends BaseServlet {
 				writeError(resp, HttpServletResponse.SC_BAD_REQUEST, "Not enough items in stock");
 				return;
 			}
-			actualCost += good.getCost();
+			actualCost += good.getCost() * goodsBag.getCount(goodId);
 		}
 
 		order.setCost(actualCost);
@@ -129,7 +125,7 @@ public class OrdersServlet extends BaseServlet {
 	}
 
 	private void updateOrderStatus(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		String orderId = req.getRequestURI().substring("/api/orders/".length());
+		String orderId = req.getPathInfo().substring(1);
 		if (orderId == null || orderId.isEmpty()) {
 			writeError(resp, HttpServletResponse.SC_BAD_REQUEST, "Invalid order id");
 			return;
