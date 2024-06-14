@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.collections4.IterableUtils;
 import org.bson.types.ObjectId;
@@ -56,8 +57,14 @@ public class ReviewsServlet extends BaseServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession(false);
+		if (session == null || session.getAttribute("id") == null) {
+			writeError(resp, HttpServletResponse.SC_BAD_REQUEST, "User not logged in");
+			return;
+		}
 		Review review = gson.fromJson(getJsonFromRequest(req), Review.class);
 		review.setPublishingDate(new Date());
+		review.setAuthor(new ObjectId((String) session.getAttribute("id")));
 		if (review.getAuthor() == null || review.getGoods() == null || review.getContent() == null
 				|| review.getRate() == null || review.getRate() < 1 || review.getRate() > 5) {
 			writeError(resp, HttpServletResponse.SC_BAD_REQUEST,
