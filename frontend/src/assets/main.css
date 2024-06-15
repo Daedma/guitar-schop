@@ -115,7 +115,7 @@ html {
 /**********  Main Menu CSS Code Ends  **********/
 
 /**********  START PAGE  **********/
-.hello-text sit {
+.hello-text div {
   position:relative;
   top: 16px;
   font-weight: 500;
@@ -137,7 +137,7 @@ html {
 .sign-in {
   padding-top: 40px;
 }
-.sign-in-text sit {
+.sign-in-text div {
   font-weight: 500;
   color: #2b304a;
   font-size: 17px;
@@ -150,6 +150,7 @@ html {
   margin-top: 17px;
 }
 .login-textbox-text {
+  margin-left: 0px;
   padding: 16px;
   height: 30px;
   width: 80%;
@@ -166,6 +167,7 @@ html {
   margin-top: 7px;
 }
 .password-textbox-text {
+  margin-left: -48px;
   padding: 16px;
   height: 30px;
   width: 80%;
@@ -174,12 +176,30 @@ html {
   float: left;
 }
 
-a.button-sign-in-text {
+a.button-sign-in-textSIGNIN {
+  float: inherit;
   display: inline-block;
   background: #ffffff;
   position: relative;
-  top: 115px;
-  left: -870px;
+  top: 135px;
+  left: -1006px;
+  color: #f13f31;
+  padding: 12px;
+  border: 2px solid #f13f31; /* Параметры рамки */
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 100;
+}
+a.button-sign-in-textSIGNUP {
+  float: inherit;
+  display: inline-block;
+  background: #ffffff;
+  position: relative;
+  top: 130px;
+  left: -947px;
   color: #f13f31;
   padding: 12px;
   border: 2px solid #f13f31; /* Параметры рамки */
@@ -195,8 +215,8 @@ a.button-sign-up-text {
   display: inline-block;
   background: #ffffff;
   position: relative;
-  top: 115px;
-  left: -807px;
+  top: 130px;
+  left: -947px;
   color: #f13f31;
   padding: 12px;
   border: 2px solid #f13f31; /* Параметры рамки */
@@ -207,9 +227,31 @@ a.button-sign-up-text {
   line-height: 1;
   font-weight: 100;
 }
+a.incorrect-input {
+  position: relative;
+  top: 160px;
+  left: -395px;
+  font-weight: 500;
+  color: #f13f31;
+  font-size: 17px;
+  font-family: Roboto, sans-serif, arial;
+  text-decoration: none;
+}
+
+.incorrect-input2 {
+  position: relative;
+  top: 160px;
+  left: -395px;
+  font-weight: 500;
+  color: #f13f31;
+  font-size: 17px;
+  font-family: Roboto, sans-serif, arial;
+  text-decoration: none;
+}
 
 .button-sign-in {
-  margin: 24px;
+  margin-top: 17px;
+  /*margin: 24px;*/
   text-align: center;
 }
 .button-to-sign-up {
@@ -268,7 +310,7 @@ a.button-sign-up-text {
 
 /**********  Product-Section CSS Code Starts  **********/
 
-.product-text sit {
+.product-text div {
   position:relative;
   top: 16px;
   padding: 16px;

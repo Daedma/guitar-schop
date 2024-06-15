@@ -1,30 +1,53 @@
 <script>
-import { useStore } from 'vuex'
-import {computed } from "vue"
 
+import axios from "axios";
+import {watch} from "vue";
 
+watch(
+
+)
 export default {
-  setup() {
-    const store = useStore()
-    let customerData = computed(() => store.state.isAuth)
-    let adminData = computed(() => store.state.isAdmin)
+  data() {
     return {
-      isCustomer: customerData,
-      isAdmin: adminData
+      isCustomer: JSON.parse(localStorage.customerAuth),
+      isAdmin: JSON.parse(localStorage.adminAuth)
     }
   },
   methods: {
-    checkStatus() {
-      const store = useStore()
-      let customerData = computed(() => store.state.isAuth)
-      let adminData = computed(() => store.state.isAdmin)
-      return {
-        customerData: customerData,
-        adminData: adminData
+    localstoragefalse() {
+      localStorage.customerAuth = false
+      localStorage.adminAuth = false
+    },
+    async logoutUser() {
+      try {
+        const response = await axios.post('http://localhost:8080/guitar-shop/api/users/logout', {},
+            { withCredentials: true });
+        // console.log(JSON.parse(response.request.responseText))
+        if (response.status === 200) {
+          // console.log(JSON.parse(response.request.responseText))
+          this.isCustomer = localStorage.setItem('customerAuth', false)
+          this.isAdmin = localStorage.setItem('adminAuth', false)
+          // const userInfo = JSON.parse(response.request.responseText);
+        }
+        // удалить куки
+      } catch (error) {
+        if (error.response && error.response.status === 401) {
+          // Обработайте ошибку входа, например, покажите сообщение об ошибке
+          console.log(error.response.data.error);
+        } else {
+          console.error(error);
+        }
       }
+    }
+  },
+  updated() {
+    return {
+      isCustomer: JSON.parse(localStorage.customerAuth),
+      isAdmin: JSON.parse(localStorage.adminAuth)
     }
   }
 }
+
 </script>
 
 <template>
@@ -40,7 +63,7 @@ export default {
   <div class="width-100 search-panel">
     <div class="container">
       <div class="width-50">
-        <input class="search-textbox" type="text" Placeholder="Поиск...">
+        <input class="search-textbox" v-model="searchQuery" type="text" Placeholder="Поиск...">
         <button class="search-button">
           <i class="fa fa-search" aria-hidden="true"></i>
         </button>
@@ -49,7 +72,7 @@ export default {
         <ul class="cart-sect">
           <li>
             <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-            <router-link to="/" v-if="isCustomer || isAdmin">Выйти</router-link>
+            <router-link to="#" v-if="isCustomer || isAdmin" @click.prevent="logoutUser">Выйти</router-link>
             <router-link to="/sign-in" v-else> Войти </router-link>
           </li>
           <li>

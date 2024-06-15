@@ -42,26 +42,35 @@ export default {
       }
     },
   },
+  beforeRouteEnter(to, from, next) {
+    if ((JSON.parse(localStorage.getItem('adminAuth')) === false) &&
+        (JSON.parse(localStorage.getItem('customerAuth')) === false)) {
+      next()
+    } else {
+      next('/error')
+    }
+  }
 }
 </script>
-
 <template>
   <div class="sign-in">
     <div class="container">
       <div class="sign-in-text">
-        <sit class="text">
+        <div class="text">
           <a>Введите логин и пароль.</a>
-        </sit>
+        </div>
       </div>
+      <form class="login">
         <div class="login-textbox">
           <input required v-model="login" class="login-textbox-text" type="text" Placeholder="Логин">
         </div>
         <div class="password-textbox">
           <input required v-model="password" class="password-textbox-text" type="text" Placeholder="Пароль">
         </div>
-        <div class="button-sign-up">
-          <a class="button-sign-up-text" @click.prevent="registerUser">Зарегистрироваться!</a>
+        <div class="button-sign-in">
+          <a to="/" class="button-sign-up-text" @click.prevent="registerUser">Зарегистрироваться!</a>
         </div>
+      </form>
     </div>
   </div>
 </template>

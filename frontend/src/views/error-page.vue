@@ -6,9 +6,9 @@
   <div class="sign-in">
     <div class="container">
       <div class="hello-text">
-        <sit class="text">
+        <div class="text">
           <a>Произошла ошибка!</a>
-        </sit>
+        </div>
       </div>
       <div class="hello-text-2">
         <a class="text">

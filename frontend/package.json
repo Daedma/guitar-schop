@@ -11,12 +11,15 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@clerk/clerk-js": "^5.7.0",
     "axios": "^1.7.2",
     "express-session": "^1.18.0",
     "module-alias": "^2.2.3",
     "vue": "^3.4.21",
     "vue-axios": "^3.5.2",
+    "vue-clerk": "^0.4.3",
     "vue-router": "^4.3.0",
+    "vue-session": "^1.0.0",
     "vuex": "^4.1.0"
   },
   "devDependencies": {

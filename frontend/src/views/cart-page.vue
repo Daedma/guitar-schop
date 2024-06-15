@@ -6,9 +6,9 @@
   <div class="width-100 margin-top-50">
     <div class="container">
       <div class="product-text">
-        <sit class="text">
+        <div class="text">
           <a>Гитары</a>
-        </sit>
+        </div>
       </div>
       <div class="width-25">
         <div class="product-section">

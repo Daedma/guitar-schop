@@ -114,7 +114,7 @@ html {
 /**********  Main Menu CSS Code Ends  **********/
 
 /**********  START PAGE  **********/
-.hello-text sit {
+.hello-text div {
     position:relative;
     top: 16px;
     font-weight: 500;
@@ -136,7 +136,7 @@ html {
 .sign-in {
     padding-top: 40px;
 }
-.sign-in-text sit {
+.sign-in-text div {
     font-weight: 500;
     color: #2b304a;
     font-size: 17px;
@@ -256,7 +256,7 @@ a.button-sign-up-text {
 
 /**********  Product-Section CSS Code Starts  **********/
 
-.product-text sit {
+.product-text div {
     position:relative;
     top: 16px;
     padding: 16px;

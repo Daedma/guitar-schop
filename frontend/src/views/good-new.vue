@@ -75,6 +75,13 @@ export default {
         this.images.push(file);
       }
     }
+  },
+  beforeRouteEnter(to, from, next) {
+    if (JSON.parse(localStorage.getItem('adminAuth')) === true) {
+      next()
+    } else {
+      next('/error')
+    }
   }
 }
 </script>

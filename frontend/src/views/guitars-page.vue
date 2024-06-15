@@ -11,7 +11,6 @@ export default {
   },
   methods: {
     async getGoods() {
-      // const formData = new FormData();
       try {
         const response = await axios.get('http://localhost:8080/guitar-shop/api/items?type=guitar',
             { withCredentials: true });
@@ -21,19 +20,18 @@ export default {
 
         for (let i = 0; i < numberOfGoods; i++) {
           const object = response.data[i];
-          console.log(response.data[i].images);
+          // console.log(response.data[i].images);
           this.goods.push({
             label: object.name,
             images: object.images,
+            mainImage: "http://localhost:8080/guitar-shop/" + response.data[i].images[0],
             cost: object.cost,
-            rate: object.rate,
+            rate: object.rate
           })
+          console.log(this.goods[i].mainImage);
         }
-
-        // await this.getGoods()
       } catch (error) {
         if (error.response && error.response.status !== 200) {
-          // Обработайте ошибку входа, например, покажите сообщение об ошибке
           console.log(error.response.data.error);
       }
     }
@@ -49,17 +47,17 @@ export default {
     <div class="width-100 margin-top-50">
       <div class="container">
         <div class="product-text">
-          <sit class="text">
+          <div class="text">
             <a>Гитары</a>
-          </sit>
+          </div>
         </div>
-        <div class="width-25" form @submit.prevent="getGuitars" v-for="good in goods" :key="good">
+        <div class="width-25" form @submit.prevent="getGoods" v-for="good in goods" :key="good">
 
           <div class="product-section" >
             <div class="product-border" >
               <div class="product-img-center">
                 <a href="#">
-                  <img class="product-img" src="@/assets/pictures/guitars/Fender-Ritchie-Blackmore-Stratocaster.png">
+                  <img class="product-img" :src="good.mainImage" >
                 </a>
               </div>
               <div>
