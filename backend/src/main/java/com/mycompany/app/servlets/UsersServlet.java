@@ -13,7 +13,7 @@ import com.google.gson.JsonObject;
 import com.mycompany.app.dao.UserDAO;
 import com.mycompany.app.models.User;
 
-@WebServlet(name = "users-servlet", urlPatterns = { "/api/users/register", "/api/users/login" })
+@WebServlet(name = "users-servlet", urlPatterns = { "/api/users/register", "/api/users/login", "/api/users/logout" })
 public class UsersServlet extends BaseServlet {
 
 	@Override
