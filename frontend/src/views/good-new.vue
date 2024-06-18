@@ -18,7 +18,7 @@ export default {
     }
   },
   methods: {
-    addProduct() {
+    async addProduct() {
       const formData = new FormData();
 
       for (const image of this.images) {
@@ -44,16 +44,27 @@ export default {
 
       formData.append('properties', JSON.stringify(propertiesObject))
       console.log(this.images)
-      axios.post('http://localhost:8080/guitar-shop/api/items/new', formData,
-          { withCredentials: true})
-          .then(response => {
-            console.log(response.data);
-            // здесь можно добавить логику для отображения сообщения об успешном добавлении товара
-          })
-          .catch(error => {
-            console.error(error);
-            // здесь можно добавить логику для отображения сообщения об ошибке при добавлении товара
-          });
+      try {
+        const response = await axios.post('http://localhost:8080/guitar-shop/api/items/new', formData,
+            {withCredentials: true});
+
+        if (response.status === 201) {
+          localStorage.setItem('user', JSON.stringify(response.data));
+
+          alert('Товар успешно добавлен')
+          window.location = '/';
+        }
+      }catch (error) {
+        if (error.response && error.response.status !== 201) {
+          // Обработайте ошибку входа, например, покажите сообщение об ошибке
+          console.log(error.response.data.error);
+          alert('Неправильный ввод!')
+        } else {
+          console.error(error);
+          alert('Неправильный ввод!')
+        }
+      }
+
     },
     showCharacteristics() {
       if (this.type === 'strings') {

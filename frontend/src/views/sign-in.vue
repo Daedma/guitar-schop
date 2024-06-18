@@ -32,11 +32,18 @@ export default {
           }
           window.location = '/';
         }
+        else if (response.status === 401) {
+          // Обработайте ошибку входа, например, покажите сообщение об ошибке
+          console.log(response.data.error);
+          alert('Неправильный ввод!')
+        }
       } catch (error) {
         if (error.response && error.response.status === 401) {
           // Обработайте ошибку входа, например, покажите сообщение об ошибке
           console.log(error.response.data.error);
+          alert('Неправильный ввод!')
         } else {
+          alert('Неправильный ввод!')
           console.error(error);
         }
       }

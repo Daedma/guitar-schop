@@ -36,8 +36,10 @@ export default {
         if (error.response && error.response.status !== 201) {
           // Обработайте ошибку входа, например, покажите сообщение об ошибке
           console.log(error.response.data.error);
+          alert('Неправильный ввод!')
         } else {
           console.error(error);
+          alert('Неправильный ввод!')
         }
       }
     },
