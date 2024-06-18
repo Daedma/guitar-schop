@@ -90,4 +90,9 @@ public class BaseServlet extends HttpServlet {
 		scanner.close();
 		return jsonData;
 	}
+
+	protected boolean isAdmin(HttpServletRequest req) {
+		return req.getSession() != null && req.getSession().getAttribute("role") != null
+				&& req.getSession().getAttribute("role").equals("admin");
+	}
 }

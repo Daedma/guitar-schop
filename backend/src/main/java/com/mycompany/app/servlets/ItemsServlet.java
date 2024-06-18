@@ -75,7 +75,7 @@ public class ItemsServlet extends BaseServlet {
 		String type = req.getParameter("type");
 		String query = req.getParameter("q");
 
-		if (type == null || !(type.equalsIgnoreCase("guitar") || type.equalsIgnoreCase("strings"))) {
+		if (!isValidType(type)) {
 			writeError(resp, HttpServletResponse.SC_BAD_REQUEST, "Invalid item type");
 			return;
 		}
@@ -102,7 +102,7 @@ public class ItemsServlet extends BaseServlet {
 	private void getItemById(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		String id = req.getPathInfo().substring(1);
 
-		if (id == null || id.isEmpty()) {
+		if (id == null || !ObjectId.isValid(id)) {
 			writeError(resp, HttpServletResponse.SC_BAD_REQUEST, "Invalid item id");
 			return;
 		}
@@ -122,7 +122,7 @@ public class ItemsServlet extends BaseServlet {
 	}
 
 	private void addNewItem(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		if (req.getSession().getAttribute("role") == null || !req.getSession().getAttribute("role").equals("admin")) {
+		if (!isAdmin(req)) {
 			writeError(resp, HttpServletResponse.SC_FORBIDDEN, "Users can to add new items only with role admin");
 			return;
 		}
@@ -135,16 +135,12 @@ public class ItemsServlet extends BaseServlet {
 
 			Good newItem = gson.fromJson(textData, Good.class);
 
-			if (newItem.getType() == null || !(newItem.getType().equalsIgnoreCase("guitar")
-					|| newItem.getType().equalsIgnoreCase("strings"))) {
+			if (!isValidType(newItem.getType())) {
 				writeError(resp, HttpServletResponse.SC_BAD_REQUEST, "Invalid item type");
 				return;
 			}
 
-			if (newItem.getName() == null || newItem.getName().isEmpty()
-					|| newItem.getDescription() == null || newItem.getDescription().isEmpty()
-					|| newItem.getCost() == null || newItem.getRemaining() == null || newItem.getCategories() == null
-					|| newItem.getCategories().isEmpty()) {
+			if (!isValidItem(newItem)) {
 				writeError(resp, HttpServletResponse.SC_BAD_REQUEST, "Invalid item data");
 				return;
 			}
@@ -212,5 +208,17 @@ public class ItemsServlet extends BaseServlet {
 			throw new IOException(e);
 		}
 		return null;
+	}
+
+	private boolean isValidItem(Good item) {
+		return !(item.getName() == null || item.getName().isEmpty()
+				|| item.getDescription() == null || item.getDescription().isEmpty()
+				|| item.getCost() == null || item.getRemaining() == null || item.getCategories() == null
+				|| item.getCategories().isEmpty() || item.getCost() < 0 || item.getRemaining() < 0
+				|| (item.getRate() != null && (item.getRate() < 0 && item.getRate() > 5)));
+	}
+
+	private boolean isValidType(String type) {
+		return type != null && (type.equals("guitar") || type.equals("strings"));
 	}
 }

@@ -122,6 +122,11 @@
 				<password>admin</password>
 			</configuration>
 		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-war-plugin</artifactId>
+			<version>3.3.1</version>  <!-- or another recent version -->
+		</plugin>
       </plugins>
     </pluginManagement>
   </build>
