@@ -11,7 +11,7 @@ public class Order {
 	@BsonId
 	private ObjectId id;
 	@BsonProperty("user_id")
-	private ObjectId user;
+	private ObjectId userId;
 	@BsonProperty("full_name")
 	private String fullName;
 	@BsonProperty("goods_id")
@@ -33,12 +33,12 @@ public class Order {
 		this.id = id;
 	}
 
-	public ObjectId getUser() {
-		return user;
+	public ObjectId getUserId() {
+		return userId;
 	}
 
-	public void setUser(ObjectId user) {
-		this.user = user;
+	public void setUserId(ObjectId user) {
+		this.userId = user;
 	}
 
 	public String getFullName() {
@@ -93,7 +93,7 @@ public class Order {
 	public String toString() {
 		return "Order{" +
 				"id=" + id +
-				", user=" + user +
+				", user=" + userId +
 				", fullName='" + fullName + '\'' +
 				", goods=" + goods +
 				", cost=" + cost +

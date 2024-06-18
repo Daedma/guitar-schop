@@ -9,6 +9,7 @@ import org.bson.types.ObjectId;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Accumulators;
 import com.mongodb.client.model.Aggregates;
+import com.mongodb.client.model.Indexes;
 import com.mongodb.client.model.Updates;
 import com.mycompany.app.dao.GoodDAO;
 import com.mycompany.app.filters.GoodFilter;
@@ -17,6 +18,13 @@ import com.mycompany.app.models.Good;
 public class GoodMongoDAO extends BaseMongoDAO<Good> implements GoodDAO {
 	public GoodMongoDAO(MongoDatabase database) {
 		super(database, "goods_collection", Good.class);
+	}
+
+	@Override
+	public String save(Good entity) {
+		String id = super.save(entity);
+		collection.createIndex(Indexes.compoundIndex(Indexes.text("name"), Indexes.text("description")));
+		return id;
 	}
 
 	@Override

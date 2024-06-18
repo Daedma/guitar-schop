@@ -1,6 +1,5 @@
 package com.mycompany.app.models;
 
-import java.io.File;
 import java.util.List;
 
 import org.bson.codecs.pojo.annotations.BsonId;
@@ -17,13 +16,13 @@ public class Good {
 	@BsonProperty("cost")
 	private Double cost;
 	@BsonProperty("images")
-	private List<File> images;
+	private List<String> images;
 	@BsonProperty("remaining")
 	private Integer remaining;
 	@BsonProperty("rate")
 	private Double rate;
 	@BsonProperty("categories")
-	private List<ObjectId> categories;
+	private List<String> categories;
 	@BsonProperty("type")
 	private String type;
 
@@ -59,11 +58,11 @@ public class Good {
 		this.cost = cost;
 	}
 
-	public List<File> getImages() {
+	public List<String> getImages() {
 		return images;
 	}
 
-	public void setImages(List<File> images) {
+	public void setImages(List<String> images) {
 		this.images = images;
 	}
 
@@ -83,11 +82,11 @@ public class Good {
 		this.rate = rate;
 	}
 
-	public List<ObjectId> getCategories() {
+	public List<String> getCategories() {
 		return categories;
 	}
 
-	public void setCategories(List<ObjectId> categories) {
+	public void setCategories(List<String> categories) {
 		this.categories = categories;
 	}
 
